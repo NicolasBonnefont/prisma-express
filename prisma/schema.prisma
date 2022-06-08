@@ -1,0 +1,2795 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model acesso {
+  NomeUsuario   String  @db.VarChar(25)
+  Sistema       String  @db.VarChar(3)
+  Menu          String  @db.VarChar(45)
+  Formulario    String  @db.VarChar(60)
+  UtilizaBotoes String? @default("S") @db.Char(1)
+  Incluir       String? @default("N") @db.Char(1)
+  Alterar       String? @default("N") @db.Char(1)
+  Excluir       String? @default("N") @db.Char(1)
+  Consultar     String? @default("N") @db.Char(1)
+  Imprimir      String? @default("N") @db.Char(1)
+
+  @@id([NomeUsuario, Sistema, Menu, Formulario])
+}
+
+model adicao002 {
+  NumLiberacao  Int
+  NumeroDI      String  @db.VarChar(12)
+  ClassFiscal   String  @db.VarChar(8)
+  NumeroAdicao  Int
+  CodFabricante String? @db.VarChar(60)
+  ValorDesconto Float?
+
+  @@id([NumLiberacao, NumeroDI, ClassFiscal, NumeroAdicao])
+}
+
+model adicao003 {
+  NumLiberacao  Int
+  NumeroDI      String  @db.VarChar(12)
+  ClassFiscal   String  @db.VarChar(8)
+  NumeroAdicao  Int
+  CodFabricante String? @db.VarChar(60)
+  ValorDesconto Float?
+
+  @@id([NumLiberacao, NumeroDI, ClassFiscal, NumeroAdicao])
+}
+
+model agenciacheque {
+  CodigoBanco   String  @db.VarChar(3)
+  CodigoAgencia String  @db.VarChar(5)
+  Praca         String? @db.VarChar(20)
+  UF            String? @db.VarChar(2)
+
+  @@id([CodigoBanco, CodigoAgencia])
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model antecipacaopagar002 {
+  NumLancto      Int?      @default(0)
+  Tipo           Int?      @default(0)
+  Data           DateTime? @db.Date
+  NumAntecipacao String?   @db.VarChar(10)
+  Fornecedor     Int?      @default(0)
+  Valor          Float?    @default(0)
+  ValorUtilizado Float?    @default(0)
+  CodBanco       Int?
+  Observacoes    String?   @db.VarChar(50)
+  NumDocumento   String?   @db.VarChar(10)
+  NumLanctoFC    Int?      @default(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model antecipacaopagar003 {
+  NumLancto      Int?      @default(0)
+  Tipo           Int?      @default(0)
+  Data           DateTime? @db.Date
+  NumAntecipacao String?   @db.VarChar(10)
+  Fornecedor     Int?      @default(0)
+  Valor          Float?    @default(0)
+  ValorUtilizado Float?    @default(0)
+  CodBanco       Int?
+  Observacoes    String?   @db.VarChar(50)
+  NumDocumento   String?   @db.VarChar(10)
+  NumLanctoFC    Int?      @default(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model antecipacaoreceber002 {
+  NumLancto       Int?      @default(0)
+  Tipo            Int?      @default(0)
+  Data            DateTime? @db.Date
+  NumAntecipacao  String?   @db.VarChar(10)
+  Cliente         Int?      @default(0)
+  Valor           Float?    @default(0)
+  ValorUtilizado  Float?    @default(0)
+  CodBanco        Int?      @default(0)
+  Observacoes     String?   @db.VarChar(50)
+  NumDuplicata    String?   @db.VarChar(10)
+  NumLanctoFC     Int?      @default(0)
+  TipoAntecipacao Int?      @default(0)
+  Devolucao       String?   @default("N") @db.VarChar(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model antecipacaoreceber003 {
+  NumLancto       Int?      @default(0)
+  Tipo            Int?      @default(0)
+  Data            DateTime? @db.Date
+  NumAntecipacao  String?   @db.VarChar(10)
+  Cliente         Int?      @default(0)
+  Valor           Float?    @default(0)
+  ValorUtilizado  Float?    @default(0)
+  CodBanco        Int?      @default(0)
+  Observacoes     String?   @db.VarChar(50)
+  NumDuplicata    String?   @db.VarChar(10)
+  NumLanctoFC     Int?      @default(0)
+  TipoAntecipacao Int?      @default(0)
+  Devolucao       String?   @default("N") @db.VarChar(1)
+
+  @@ignore
+}
+
+model banco002 {
+  CODIGO         Int     @id @default(0)
+  CODAGENCIA     String? @db.VarChar(5)
+  NOME           String? @db.VarChar(40)
+  ENDERECO       String? @db.VarChar(40)
+  BAIRRO         String? @db.VarChar(20)
+  MUNICIPIO      String? @db.VarChar(30)
+  UF             String? @db.VarChar(2)
+  CEP            String? @db.VarChar(8)
+  TELEFONE       String? @db.VarChar(19)
+  Gerente        String? @db.VarChar(60)
+  NOMEAGENCIA    String? @db.VarChar(30)
+  CONTACONTABIL  String? @db.VarChar(10)
+  Saldo          Float?  @default(0)
+  NroRemessaCNAB Int?    @default(0)
+  ConsideraFluxo String? @db.VarChar(1)
+}
+
+model banco003 {
+  CODIGO         Int     @id @default(0)
+  CODAGENCIA     String? @db.VarChar(5)
+  NOME           String? @db.VarChar(40)
+  ENDERECO       String? @db.VarChar(40)
+  BAIRRO         String? @db.VarChar(20)
+  MUNICIPIO      String? @db.VarChar(30)
+  UF             String? @db.VarChar(2)
+  CEP            String? @db.VarChar(8)
+  TELEFONE       String? @db.VarChar(19)
+  Gerente        String? @db.VarChar(60)
+  NOMEAGENCIA    String? @db.VarChar(30)
+  CONTACONTABIL  String? @db.VarChar(10)
+  Saldo          Float?  @default(0)
+  NroRemessaCNAB Int?    @default(0)
+  ConsideraFluxo String? @db.VarChar(1)
+}
+
+model bancocheque {
+  Codigo String  @id @db.VarChar(3)
+  Nome   String? @db.VarChar(30)
+}
+
+model cce002 {
+  NumeroNF   Int       @default(0)
+  Sequencia  Int       @default(0)
+  CodCliente Int?      @default(0)
+  Data       DateTime? @db.Date
+  Correcao   String?   @db.LongText
+  NroChave   String?   @db.VarChar(45)
+  Autorizado String?   @db.VarChar(1)
+
+  @@id([NumeroNF, Sequencia])
+}
+
+model cce003 {
+  NumeroNF   Int       @default(0)
+  Sequencia  Int       @default(0)
+  CodCliente Int?      @default(0)
+  Data       DateTime? @db.Date
+  Correcao   String?   @db.LongText
+  NroChave   String?   @db.VarChar(45)
+  Autorizado String?   @db.VarChar(1)
+
+  @@id([NumeroNF, Sequencia])
+}
+
+model ccusto {
+  Codigo        String  @id @default("") @db.VarChar(10)
+  Descricao     String? @db.VarChar(25)
+  Superior      String? @db.VarChar(6)
+  CodFornecedor Int?    @default(0)
+  Departamento  String? @default("   ") @db.VarChar(3)
+  RecebeLancto  String? @default("N") @db.Char(1)
+  ValorPgtos    Float?  @default(0)
+  Saldo         Float?  @default(0)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model cest {
+  CEST      String? @db.VarChar(20)
+  NCM       String? @db.VarChar(20)
+  Segmento  String? @db.LongText
+  Item      String? @db.VarChar(60)
+  Descricao String? @db.LongText
+  Anexo     String? @db.LongText
+
+  @@ignore
+}
+
+model cheque002 {
+  CODBANCO    Int       @default(0)
+  NUMCHEQUE   Int       @default(0)
+  DATA        DateTime? @db.Date
+  DATAPRE     DateTime? @db.Date
+  FAVORECIDO  String?   @db.VarChar(30)
+  FORMAPGTO   Int?      @default(0)
+  VALORTOTAL  Float?    @default(0) @db.Float
+  EMITIDO     String?   @default("N") @db.Char(1)
+  COMPENSADO  String?   @default("N") @db.Char(1)
+  CANCELADO   String?   @default("N") @db.Char(1)
+  OBSERVACOES String?   @db.LongText
+
+  @@id([CODBANCO, NUMCHEQUE])
+}
+
+model cheque003 {
+  CODBANCO    Int       @default(0)
+  NUMCHEQUE   Int       @default(0)
+  DATA        DateTime? @db.Date
+  DATAPRE     DateTime? @db.Date
+  FAVORECIDO  String?   @db.VarChar(30)
+  FORMAPGTO   Int?      @default(0)
+  VALORTOTAL  Float?    @default(0) @db.Float
+  EMITIDO     String?   @default("N") @db.Char(1)
+  COMPENSADO  String?   @default("N") @db.Char(1)
+  CANCELADO   String?   @default("N") @db.Char(1)
+  OBSERVACOES String?   @db.LongText
+
+  @@id([CODBANCO, NUMCHEQUE])
+}
+
+model classfiscal {
+  Codigo                 String  @id @default("0") @db.VarChar(10)
+  Descricao              String? @db.VarChar(40)
+  Aliquota               Float?  @default(0)
+  CalculaSubstTributaria String? @db.VarChar(1)
+  PercReducaoIcms        Float?  @default(0)
+  AliquotaIcmsReduzido   Float?  @default(0)
+  CEST                   String  @db.VarChar(10)
+  UnidMedExportacao      String? @db.VarChar(6)
+  CalculaFCP             String? @default("N") @db.Char(1)
+}
+
+model clifor {
+  Codigo                 Int       @id @default(0)
+  CNPJ                   String?   @db.VarChar(19)
+  RazaoSocial            String?   @db.VarChar(60)
+  NomeFantasia           String?   @db.VarChar(60)
+  CEP                    String?   @db.VarChar(9)
+  Endereco               String?   @db.VarChar(40)
+  Numero                 String?   @db.VarChar(5)
+  Complemento            String?   @db.VarChar(20)
+  Bairro                 String?   @db.VarChar(20)
+  Municipio              String?   @db.VarChar(25)
+  CodigoMunicipio        String?   @db.VarChar(7)
+  CodigoPais             String?   @db.VarChar(5)
+  UF                     String?   @db.VarChar(2)
+  HomePage               String?   @db.VarChar(80)
+  Email                  String?   @db.VarChar(80)
+  DDD                    String?   @db.VarChar(2)
+  Telefone               String?   @db.VarChar(9)
+  Fax                    String?   @db.VarChar(9)
+  Contato                String?   @db.VarChar(20)
+  InscricaoEstadual      String?   @db.VarChar(20)
+  InscricaoSuframa       String?   @db.VarChar(20)
+  InscricaoMunicipal     String?   @db.VarChar(20)
+  IncentivoFiscal        String?   @db.VarChar(1)
+  CondicaoPgto           Int?      @default(0)
+  Dia1                   Int?
+  Dia2                   Int?
+  Dia3                   Int?
+  Dia4                   Int?
+  Dia5                   Int?
+  Dia6                   Int?
+  Dia7                   Int?
+  Dia8                   Int?
+  Dia9                   Int?
+  ContaContabil          String?   @db.VarChar(10)
+  Banco                  Int?      @default(0)
+  Status                 Int?      @default(0)
+  DataBloqueio           DateTime? @db.Date
+  TipoObs                Int?      @default(0)
+  CodVendedor            Int?      @default(0)
+  NatOperacao            String?   @db.VarChar(5)
+  Transportadora         Int?      @default(0)
+  ContrICMS              String?   @db.VarChar(1)
+  EmiteEtiqueta          String?   @db.VarChar(1)
+  ConsumidorFinal        String?   @db.VarChar(1)
+  DescPIS                String?   @default("N") @db.VarChar(1)
+  CodZonaFranca          String?   @db.VarChar(5)
+  LimiteCredito          Float?    @default(0)
+  Pessoa                 String?   @db.VarChar(1)
+  TITABCLI               Int?      @default(0)
+  DataPrimCompra         DateTime? @db.Date
+  DataMaiorCompra        DateTime? @db.Date
+  DataUltCompra          DateTime? @db.Date
+  VlrPrimCompra          Float?    @default(0)
+  VlrMaiorCompra         Float?    @default(0)
+  VlrUltCompra           Float?    @default(0)
+  DataMaiorAnt           DateTime? @db.Date
+  DataUltAnt             DateTime? @db.Date
+  VlrMaiorAnt            Float?    @default(0)
+  VlrUltAnt              Float?    @default(0)
+  Observacoes            String?   @db.LongText
+  Data                   DateTime? @db.Date
+  CNPJEntrega            String?   @db.VarChar(14)
+  InscrEstadualEntrega   String?   @db.VarChar(20)
+  EnderecoEntrega        String?   @db.VarChar(40)
+  NumeroEntrega          String?   @db.VarChar(5)
+  ComplementoEntrega     String?   @db.VarChar(30)
+  BairroEntrega          String?   @db.VarChar(30)
+  MunicipioEntrega       String?   @db.VarChar(30)
+  CodMunicipioEntrega    String?   @db.VarChar(7)
+  UFEntrega              String?   @db.VarChar(2)
+  CEPEntrega             String?   @db.VarChar(8)
+  DDDCobranca            String?   @db.VarChar(2)
+  TelefoneCobranca       String?   @db.VarChar(8)
+  FaxCobranca            String?   @db.VarChar(8)
+  EnderecoCobranca       String?   @db.VarChar(40)
+  NumeroCobranca         String?   @db.VarChar(5)
+  ComplementoCobranca    String?   @db.VarChar(30)
+  BairroCobranca         String?   @db.VarChar(20)
+  MunicipioCobranca      String?   @db.VarChar(25)
+  UFCobranca             String?   @db.VarChar(2)
+  CEPCobranca            String?   @db.VarChar(9)
+  EmailCobranca          String?   @db.VarChar(80)
+  TipoCliente            String?   @db.VarChar(30)
+  Tipo                   String?   @db.VarChar(1)
+  Comunicacao            String?   @db.VarChar(15)
+  Comissao               Float?    @default(0)
+  PercReducaoICMS        Float?    @default(0)
+  DiaSemana              String?   @db.VarChar(7)
+  DiaMes                 Int?      @default(0)
+  QtdeCompras            Int?      @default(0)
+  OptanteSimplesNacional String?   @db.VarChar(1)
+  HistoricoContabil      Int?      @default(0)
+  AliquotaIcmsReduzido   Float?    @default(0)
+  CalculaST              String?   @db.VarChar(1)
+  CargaMediaIcmsST       Float?
+  PercDesconto1          Float?    @default(0)
+  PercDesconto2          Float?    @default(0)
+  PercDesconto3          Float?    @default(0)
+  PercDesconto4          Float?    @default(0)
+  TipoRateio             String?   @default("P") @db.VarChar(1)
+  AliqIcmsInterno        Float?    @default(0)
+  NumeroConcessao        String?   @db.VarChar(100)
+  IsentoICMS             String?   @db.VarChar(1)
+  IsentoIPI              String?   @db.VarChar(1)
+  IsentoPIS              String?   @db.VarChar(1)
+  IsentoCOFINS           String?   @db.VarChar(1)
+  PessoaEntrega          String?   @db.VarChar(1)
+}
+
+model composicaoproduto {
+  CodProdutoPrincipal String @db.VarChar(20)
+  CodProduto          String @db.VarChar(20)
+  CodMaterial         String @db.VarChar(20)
+  QtdeProduto         Float? @default(0)
+  QtdeMaterial        Float? @default(0)
+
+  @@id([CodProdutoPrincipal, CodProduto, CodMaterial])
+}
+
+model composicaoprodutoscomprados {
+  CodProduto  String @db.VarChar(20)
+  CodMaterial String @db.VarChar(20)
+  Qtde        Float?
+
+  @@id([CodProduto, CodMaterial])
+}
+
+model composicaoprodutosfabricados {
+  CodProduto          String @db.VarChar(20)
+  CodProdutoFabricado String @db.VarChar(20)
+  Qtde                Float? @default(0)
+
+  @@id([CodProduto, CodProdutoFabricado])
+}
+
+model condicaopgto {
+  Codigo        Int     @id @default(autoincrement())
+  Descricao     String? @db.VarChar(30)
+  DIA1          Int?    @default(0)
+  DIA2          Int?    @default(0)
+  DIA3          Int?    @default(0)
+  DIA4          Int?    @default(0)
+  DIA5          Int?    @default(0)
+  DIA6          Int?    @default(0)
+  DIA7          Int?    @default(0)
+  PERCENTUAL1   Float?  @default(0)
+  PERCENTUAL2   Float?  @default(0)
+  PERCENTUAL3   Float?  @default(0)
+  PERCENTUAL4   Float?  @default(0)
+  PERCENTUAL5   Float?  @default(0)
+  PERCENTUAL6   Float?  @default(0)
+  PERCENTUAL7   Float?  @default(0)
+  QTDPARCELAS   Int?    @default(0)
+  INTERVALODIAS Int?    @default(0)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model configcnab002 {
+  Codigo              Int?    @default(0)
+  CodigoCarteira      String? @db.VarChar(4)
+  NomeCarteira        String? @db.VarChar(15)
+  CodigoBanco         String? @db.VarChar(3)
+  NomeBanco           String? @db.VarChar(15)
+  CodigoEmpresa       String? @db.VarChar(20)
+  NomeEmpresa         String? @db.VarChar(30)
+  TipoCobranca        Int?    @default(0)
+  Agencia             String? @db.VarChar(6)
+  DigitoAgencia       String? @db.VarChar(1)
+  ContaCorrente       String? @db.VarChar(15)
+  DigitoContaCorrente String? @db.VarChar(1)
+  TipoCNAB            String? @db.VarChar(3)
+  Instrucao1          String? @db.VarChar(2)
+  Instrucao2          String? @db.VarChar(2)
+  JurosMora           Float?  @default(0) @db.Float
+  Multa               Float?  @default(0) @db.Float
+  AgrupaDuplicatas    String? @db.VarChar(1)
+  LocalArquivos       String? @db.VarChar(255)
+  Mensagem1           String? @db.VarChar(80)
+  Mensagem2           String? @db.VarChar(80)
+  Mensagem3           String? @db.VarChar(80)
+  Mensagem4           String? @db.VarChar(80)
+  CNPJEmpresa         String? @db.VarChar(14)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model configcnab003 {
+  Codigo              Int?    @default(0)
+  CodigoCarteira      String? @db.VarChar(4)
+  NomeCarteira        String? @db.VarChar(15)
+  CodigoBanco         String? @db.VarChar(3)
+  NomeBanco           String? @db.VarChar(15)
+  CodigoEmpresa       String? @db.VarChar(20)
+  NomeEmpresa         String? @db.VarChar(30)
+  TipoCobranca        Int?    @default(0)
+  Agencia             String? @db.VarChar(6)
+  DigitoAgencia       String? @db.VarChar(1)
+  ContaCorrente       String? @db.VarChar(15)
+  DigitoContaCorrente String? @db.VarChar(1)
+  TipoCNAB            String? @db.VarChar(3)
+  Instrucao1          String? @db.VarChar(2)
+  Instrucao2          String? @db.VarChar(2)
+  JurosMora           Float?  @default(0) @db.Float
+  Multa               Float?  @default(0) @db.Float
+  AgrupaDuplicatas    String? @db.VarChar(1)
+  LocalArquivos       String? @db.VarChar(255)
+  Mensagem1           String? @db.VarChar(80)
+  Mensagem2           String? @db.VarChar(80)
+  Mensagem3           String? @db.VarChar(80)
+  Mensagem4           String? @db.VarChar(80)
+  CNPJEmpresa         String? @db.VarChar(14)
+
+  @@ignore
+}
+
+model contaspagar002 {
+  NUMLANCTO       Int       @id @default(autoincrement())
+  CODFORNECEDOR   Int?      @default(0)
+  NUMDOCTO        String?   @db.VarChar(12)
+  DATALANCTO      DateTime? @db.Date
+  LANCTOPREVISAO  String?   @db.VarChar(1)
+  OBSERVACOES     String?   @db.VarChar(30)
+  QTDEPARCELAS    Int?      @default(0)
+  EMISSAODOCTO    DateTime? @db.Date
+  VENCIMENTO      DateTime? @db.Date
+  VALORDOCTO      Float?    @default(0)
+  VALORICMS       Float?    @default(0)
+  VALORIPI        Float?    @default(0)
+  VALORMERCADORIA Float?    @default(0)
+  VALORDIAATRASO  Float?    @default(0)
+  VALORICMSST     Float?    @default(0)
+}
+
+model contaspagar003 {
+  NUMLANCTO       Int       @id @default(autoincrement())
+  CODFORNECEDOR   Int?      @default(0)
+  NUMDOCTO        String?   @db.VarChar(12)
+  DATALANCTO      DateTime? @db.Date
+  LANCTOPREVISAO  String?   @db.VarChar(1)
+  OBSERVACOES     String?   @db.VarChar(30)
+  QTDEPARCELAS    Int?      @default(0)
+  EMISSAODOCTO    DateTime? @db.Date
+  VENCIMENTO      DateTime? @db.Date
+  VALORDOCTO      Float?    @default(0)
+  VALORICMS       Float?    @default(0)
+  VALORIPI        Float?    @default(0)
+  VALORMERCADORIA Float?    @default(0)
+  VALORDIAATRASO  Float?    @default(0)
+  VALORICMSST     Float?    @default(0)
+}
+
+model contasreceber002 {
+  NUMLANCTO       Int       @id @default(autoincrement())
+  CODCLIENTE      Int?      @default(0)
+  NUMDUPL         String?   @db.VarChar(10)
+  DATALANCTO      DateTime? @db.Date
+  CODTIPOCOBRANCA Int?      @default(0)
+  CODVENDEDOR     Int?      @default(0)
+  OBSERVACOES     String?   @db.VarChar(30)
+  QTDEPARCELAS    Int?      @default(0)
+  EMISSAODUPL     DateTime? @db.Date
+  VALORDUPL       Float?    @default(0)
+  VALORDIAATRASO  Float?    @default(0)
+}
+
+model contasreceber003 {
+  NUMLANCTO       Int       @id @default(autoincrement())
+  CODCLIENTE      Int?      @default(0)
+  NUMDUPL         String?   @db.VarChar(10)
+  DATALANCTO      DateTime? @db.Date
+  CODTIPOCOBRANCA Int?      @default(0)
+  CODVENDEDOR     Int?      @default(0)
+  OBSERVACOES     String?   @db.VarChar(30)
+  QTDEPARCELAS    Int?      @default(0)
+  EMISSAODUPL     DateTime? @db.Date
+  VALORDUPL       Float?    @default(0)
+  VALORDIAATRASO  Float?    @default(0)
+}
+
+model contatos {
+  Cliente        Int       @default(0)
+  Codigo         Int       @default(0)
+  Contato        String?   @db.VarChar(60)
+  Email          String?   @db.VarChar(255)
+  Departamento   String?   @db.VarChar(60)
+  DataNascimento DateTime? @db.Date
+  RecebeXML      String?   @db.VarChar(1)
+  Telefone1      String?   @db.VarChar(15)
+  Telefone2      String?   @db.VarChar(15)
+  Telefone3      String?   @db.VarChar(15)
+
+  @@id([Cliente, Codigo])
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model controleremessas002 {
+  NumLiberacao      Int?      @default(0)
+  NumeroNFRemessa   Int?      @default(0)
+  NumeroNFRetorno   Int?      @default(0)
+  CodProduto        String?   @db.VarChar(20)
+  Item              Int?      @default(0)
+  TipoOperacao      Int?      @default(0)
+  DescricaoOperacao String?   @db.VarChar(60)
+  Data              DateTime? @db.Date
+  Qtde              Float?    @default(0)
+  QtdeDevolvida     Float?    @default(0)
+  Tipo              String?   @db.VarChar(2)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model controleremessas003 {
+  NumLiberacao      Int?      @default(0)
+  NumeroNFRemessa   Int?      @default(0)
+  NumeroNFRetorno   Int?      @default(0)
+  CodProduto        String?   @db.VarChar(20)
+  Item              Int?      @default(0)
+  TipoOperacao      Int?      @default(0)
+  DescricaoOperacao String?   @db.VarChar(60)
+  Data              DateTime? @db.Date
+  Qtde              Float?    @default(0)
+  QtdeDevolvida     Float?    @default(0)
+  Tipo              String?   @db.VarChar(2)
+
+  @@ignore
+}
+
+model creditoicms002 {
+  Referencia String @id @default("") @db.VarChar(6)
+  Aliquota   Float? @default(0)
+}
+
+model creditoicms003 {
+  Referencia String @id @default("") @db.VarChar(6)
+  Aliquota   Float? @default(0)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model dadosbancarios {
+  CodFornecedor Int?    @default(0)
+  Codigo        Int?    @default(0)
+  Nome          String? @db.VarChar(60)
+  CodBanco      String? @db.VarChar(4)
+  Agencia       String? @db.VarChar(10)
+  ContaCorrente String? @db.VarChar(20)
+
+  @@ignore
+}
+
+model declaracaoimportacao002 {
+  NumLiberacao    Int
+  NumeroDI        String    @db.VarChar(12)
+  DataDI          DateTime? @db.Date
+  Local           String?   @db.VarChar(60)
+  UF              String?   @db.VarChar(2)
+  DataDesembaraco DateTime? @db.Date
+  CodExportador   String?   @db.VarChar(60)
+  ViaTrans        String?   @db.VarChar(2)
+  ValorFreteAdic  Float?
+
+  @@id([NumLiberacao, NumeroDI])
+}
+
+model declaracaoimportacao003 {
+  NumLiberacao    Int
+  NumeroDI        String    @db.VarChar(12)
+  DataDI          DateTime? @db.Date
+  Local           String?   @db.VarChar(60)
+  UF              String?   @db.VarChar(2)
+  DataDesembaraco DateTime? @db.Date
+  CodExportador   String?   @db.VarChar(60)
+  ViaTrans        String?   @db.VarChar(2)
+  ValorFreteAdic  Float?
+
+  @@id([NumLiberacao, NumeroDI])
+}
+
+model descontovendedor {
+  DataLancto DateTime @db.Date
+  Vendedor   Int      @default(0)
+  NumLancto  Int
+  Descricao  String?  @db.VarChar(80)
+  Valor      Float?   @default(0)
+  Tipo       String?  @db.VarChar(1)
+
+  @@id([DataLancto, Vendedor, NumLancto])
+}
+
+model desmembramentoitemxml {
+  NumDocumento  String  @db.VarChar(10)
+  CodFornecedor Int
+  ItemXML       Int
+  ItemPedido    Int
+  Descricao     String? @db.VarChar(40)
+  Qtde          Float?
+
+  @@id([NumDocumento, CodFornecedor, ItemXML, ItemPedido])
+}
+
+model destinoitem {
+  Codigo    Int     @id
+  Descricao String? @db.VarChar(60)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model diarioauxiliar {
+  Cnpj         String? @db.VarChar(14)
+  Duplicatas   Float?  @default(0) @db.Float
+  Recebimentos Float?  @default(0) @db.Float
+
+  @@ignore
+}
+
+model doctoscheque002 {
+  CODBANCO        Int     @default(0)
+  NUMCHEQUE       Int     @default(0)
+  NOMEFORNECEDOR  String  @default("") @db.VarChar(30)
+  NUMDOCTO        String  @default("") @db.VarChar(10)
+  PARCELA         Int     @default(0)
+  CODFORNECEDOR   Int?    @default(0)
+  VALORPGTO       Float?  @default(0) @db.Float
+  DESPBANCARIAS   Float?  @default(0) @db.Float
+  VALORDESCONTO   Float?  @default(0) @db.Float
+  VALORABATIMENTO Float?  @default(0) @db.Float
+  VALORJUROS      Float?  @default(0) @db.Float
+  VALORMULTA      Float?  @default(0) @db.Float
+  OBSERVACOES     String? @db.VarChar(50)
+  BAIXADO         String? @db.VarChar(1)
+  NUMLANCTO       Int?    @default(0)
+
+  @@id([CODBANCO, NUMCHEQUE, NOMEFORNECEDOR, NUMDOCTO, PARCELA])
+}
+
+model doctoscheque003 {
+  CODBANCO        Int     @default(0)
+  NUMCHEQUE       Int     @default(0)
+  NOMEFORNECEDOR  String  @default("") @db.VarChar(30)
+  NUMDOCTO        String  @default("") @db.VarChar(10)
+  PARCELA         Int     @default(0)
+  CODFORNECEDOR   Int?    @default(0)
+  VALORPGTO       Float?  @default(0) @db.Float
+  DESPBANCARIAS   Float?  @default(0) @db.Float
+  VALORDESCONTO   Float?  @default(0) @db.Float
+  VALORABATIMENTO Float?  @default(0) @db.Float
+  VALORJUROS      Float?  @default(0) @db.Float
+  VALORMULTA      Float?  @default(0) @db.Float
+  OBSERVACOES     String? @db.VarChar(50)
+  BAIXADO         String? @db.VarChar(1)
+  NUMLANCTO       Int?    @default(0)
+
+  @@id([CODBANCO, NUMCHEQUE, NOMEFORNECEDOR, NUMDOCTO, PARCELA])
+}
+
+model empresa {
+  Codigo                   Int     @id @default(autoincrement())
+  Nome                     String? @db.VarChar(50)
+  NomeFantasia             String? @db.VarChar(15)
+  CEP                      String? @db.VarChar(8)
+  Endereco                 String? @db.VarChar(40)
+  Numero                   String? @db.VarChar(6)
+  Complemento              String? @db.VarChar(20)
+  Bairro                   String? @db.VarChar(30)
+  CodigoMunicipio          String? @db.VarChar(7)
+  Municipio                String? @db.VarChar(30)
+  UF                       String? @db.VarChar(2)
+  DDD                      String? @db.VarChar(2)
+  Telefone                 String? @db.VarChar(8)
+  Fax                      String? @db.VarChar(8)
+  HomePage                 String? @db.VarChar(60)
+  Email                    String? @db.VarChar(60)
+  ServidorSMTP             String? @db.VarChar(40)
+  SenhaEmail               String? @db.VarChar(40)
+  EmailContabilidade       String? @db.VarChar(60)
+  NomeResponsavel          String? @db.VarChar(40)
+  CNPJ                     String? @db.VarChar(14)
+  InscrEstadual            String? @db.VarChar(20)
+  InscrMunicipal           String? @db.VarChar(9)
+  CNAE                     String? @db.VarChar(7)
+  IntegraCPG               String? @db.VarChar(1)
+  IntegraCR                String? @db.VarChar(1)
+  IntegraCT                String? @db.VarChar(1)
+  IntegraFC                String? @db.VarChar(1)
+  TipoCertificado          String? @db.VarChar(2)
+  AmbienteNFE              String? @db.VarChar(11)
+  RegimeTributario         String? @db.VarChar(1)
+  PortaEmail               String? @db.VarChar(10)
+  Autenticacao             String? @db.VarChar(1)
+  VersaoNFe                String? @db.VarChar(15)
+  ObservacoesCompra        String? @db.LongText
+  NomeResponsavel1         String? @db.VarChar(60)
+  NomeResponsavel2         String? @db.VarChar(60)
+  CargoResponsavel1        String? @db.VarChar(60)
+  CargoResponsavel2        String? @db.VarChar(60)
+  EmailRecebimento         String? @db.VarChar(100)
+  EmailCompra              String? @db.VarChar(100)
+  DiretorioXmlDestinatario String? @db.VarChar(300)
+  NomeResponsavel3         String? @db.VarChar(60)
+  CargoResponsavel3        String? @db.VarChar(60)
+  Horario                  String? @db.VarChar(6)
+}
+
+model fcp {
+  UF          String @db.VarChar(2)
+  ClassFiscal String @db.VarChar(8)
+  AliquotaFCP Float  @default(0)
+
+  @@id([UF, ClassFiscal])
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model fechamentofluxo {
+  Referencia String? @db.VarChar(6)
+
+  @@ignore
+}
+
+model fluxocaixa002 {
+  NUMLANCTO         Int       @id @default(autoincrement())
+  CODBANCO          Int?      @default(0)
+  NUMDOCTO          String?   @db.VarChar(10)
+  DATALANCTO        DateTime? @db.Date
+  CODHISTORICO      Int?      @default(0)
+  Codigo            Int?      @default(0)
+  VALOR             Float?    @default(0)
+  OBSERVACOES       String?   @db.VarChar(30)
+  TIPOLANCTO        String?   @db.VarChar(1)
+  LANCTOAUTOM       String?   @default("N") @db.Char(1)
+  HISTORICO         String?   @db.VarChar(50)
+  NUMLANCTOPROVISAO String?   @db.VarChar(7)
+}
+
+model fluxocaixa003 {
+  NUMLANCTO         Int       @id @default(autoincrement())
+  CODBANCO          Int?      @default(0)
+  NUMDOCTO          String?   @db.VarChar(10)
+  DATALANCTO        DateTime? @db.Date
+  CODHISTORICO      Int?      @default(0)
+  Codigo            Int?      @default(0)
+  VALOR             Float?    @default(0)
+  OBSERVACOES       String?   @db.VarChar(30)
+  TIPOLANCTO        String?   @db.VarChar(1)
+  LANCTOAUTOM       String?   @default("N") @db.Char(1)
+  HISTORICO         String?   @db.VarChar(50)
+  NUMLANCTOPROVISAO String?   @db.VarChar(7)
+}
+
+model formapgtorecto {
+  CODIGO    Int     @id @default(0)
+  DESCRICAO String? @db.VarChar(14)
+  NumDias   Int?    @default(0)
+}
+
+model fornecedor {
+  Codigo                Int       @id @default(0)
+  Situacao              String?   @db.VarChar(1)
+  CNPJ                  String?   @db.VarChar(19)
+  RazaoSocial           String?   @db.VarChar(40)
+  NomeFantasia          String?   @db.VarChar(15)
+  CEP                   String?   @db.VarChar(9)
+  Endereco              String?   @db.VarChar(40)
+  Numero                String?   @db.VarChar(6)
+  Complemento           String?   @db.VarChar(20)
+  Bairro                String?   @db.VarChar(20)
+  CodMunicipio          String?   @db.VarChar(7)
+  Municipio             String?   @db.VarChar(25)
+  UF                    String?   @db.VarChar(2)
+  HomePage              String?   @db.VarChar(80)
+  Email                 String?   @db.VarChar(80)
+  DDD                   String?   @db.VarChar(2)
+  Telefone              String?   @db.VarChar(9)
+  Fax                   String?   @db.VarChar(9)
+  Contato               String?   @db.VarChar(20)
+  InscricaoEstadual     String?   @db.VarChar(20)
+  ContaContabil         String?   @db.VarChar(10)
+  CodHistorico          Int?      @db.SmallInt
+  CodCentroCusto        String?   @db.VarChar(10)
+  LancaObs              String?   @db.VarChar(1)
+  Pessoa                String?   @db.VarChar(1)
+  Observacao            String?   @db.LongText
+  RG                    String?   @db.VarChar(12)
+  CPF                   String?   @db.VarChar(14)
+  EndRetirada           String?   @db.VarChar(40)
+  NumRetirada           String?   @db.VarChar(6)
+  ComRetirada           String?   @db.VarChar(20)
+  BaiRetirada           String?   @db.VarChar(20)
+  MunRetirada           String?   @db.VarChar(30)
+  UFRetirada            String?   @db.VarChar(2)
+  CEPRetirada           String?   @db.VarChar(8)
+  CustoFixo             String?   @default("N") @db.VarChar(1)
+  CondicaoPgto          String?   @db.VarChar(30)
+  Status                Int?      @default(0)
+  DataBloqueio          DateTime? @db.Date
+  MotivoBloqueio        String?   @db.VarChar(60)
+  Ativo                 String?   @default("N") @db.VarChar(1)
+  OptanteSimplesFederal String?   @default("N") @db.VarChar(1)
+  RetemIR               String?   @default("N") @db.VarChar(1)
+  RetemINSS             String?   @default("N") @db.VarChar(1)
+  RetemPis              String?   @default("N") @db.VarChar(1)
+  RetemCofins           String?   @default("N") @db.VarChar(1)
+  RetemContrSocial      String?   @default("N") @db.VarChar(1)
+  RetemISS              String?   @default("N") @db.VarChar(1)
+  DiaPgtoISS            String?   @db.VarChar(2)
+  CodFornecedorISS      Int?      @default(0)
+  CodCentroCustoISS     String?   @db.VarChar(10)
+  PercISS               Float?    @default(0) @db.Float
+  AliqICMS              Float?    @default(0) @db.Float
+  PercIR                Float?    @default(0) @db.Float
+}
+
+model grupoitens {
+  Codigo    Int     @id
+  Descricao String? @db.VarChar(30)
+}
+
+model grupoproduto {
+  Codigo    Int     @id @default(autoincrement())
+  Descricao String? @db.VarChar(30)
+}
+
+model historico {
+  CODIGO         Int     @id @default(0)
+  DESCRICAO      String? @db.VarChar(30)
+  TIPO           String? @db.VarChar(1)
+  HistoricoBanco String? @db.VarChar(4)
+  CodCcusto      String? @db.VarChar(10)
+}
+
+model historicocliente {
+  Cliente      Int      @default(0)
+  Data         DateTime @default(dbgenerated("'0000-00-00'")) @db.Date
+  Historico    String?  @db.LongText
+  NomeFantasia String?  @db.VarChar(60)
+
+  @@id([Cliente, Data])
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model identificacaoocorrencia {
+  CodBanco      Int?    @default(0)
+  TipoCNAB      String? @db.VarChar(3)
+  CodOcorrencia String? @db.VarChar(2)
+  Descricao     String? @db.VarChar(60)
+  Baixa         String? @db.VarChar(1)
+  FormaRecto    Int?    @default(0)
+
+  @@ignore
+}
+
+model itens {
+  Codigo          String    @id @db.VarChar(20)
+  Tipo            String?   @db.VarChar(3)
+  CodigoBarra     String?   @db.VarChar(14)
+  Descricao       String?   @db.VarChar(120)
+  Grupo           Int?      @default(0)
+  ClassFiscal     String?   @db.VarChar(8)
+  Unidade         String?   @db.VarChar(3)
+  Localizacao     String?   @db.VarChar(5)
+  SitTributaria   String?   @db.VarChar(4)
+  PrecoAnterior   Float?
+  PrecoAtual      Float?    @default(0)
+  PrecoCusto      Float?    @default(0)
+  Peso            Float?    @default(0)
+  QtdeMinEstoque  Float?    @default(0)
+  PesoEmbalagem   Float?    @default(0)
+  AliqIpi         Float?    @default(0)
+  AliqIcms        Float?    @default(0)
+  PercComissao    Float?    @default(0)
+  Obs1            String?   @db.VarChar(60)
+  Obs2            String?   @db.VarChar(60)
+  Status          String?   @default("A") @db.VarChar(1)
+  Foto            String?   @db.VarChar(255)
+  Embalagem       String?   @db.VarChar(20)
+  BaseIcmsstAnt   Float?    @default(0)
+  ValorIcmsstAnt  Float?    @default(0)
+  TipoObs         Int?      @default(0)
+  Referencia      String?   @db.VarChar(20)
+  ControlaEstoque String?   @db.Char(1)
+  NumeroOrigem    String?   @db.VarChar(15)
+  MetrosKilo      Float?    @default(0)
+  Observacao      String?   @db.LongText
+  DataCadastro    DateTime? @db.Date
+}
+
+model itensclientes {
+  CodItem       String  @default("") @db.VarChar(20)
+  CodCliente    Int
+  CodigoCliente String? @db.VarChar(20)
+
+  @@id([CodItem, CodCliente])
+}
+
+model itensnfentrada002 {
+  NumeroNF      Int
+  CodigoCliente Int     @default(0)
+  CodigoProduto String  @default("") @db.VarChar(20)
+  Descricao     String? @db.VarChar(100)
+  ClassFiscal   String? @db.VarChar(8)
+  QtdePecas     Float?  @default(0)
+  QtdeAtendida  Float?  @default(0)
+  Peso          Float?  @default(0)
+  PesoAtendido  Float?  @default(0)
+  Unidade       String? @db.VarChar(3)
+  PrecoUnitario Float?  @default(0)
+  ValorTotal    Float?  @default(0)
+  ValorAtendido Float?  @default(0)
+
+  @@id([NumeroNF, CodigoCliente, CodigoProduto])
+}
+
+model itensnfentrada003 {
+  NumeroNF      Int
+  CodigoCliente Int     @default(0)
+  CodigoProduto String  @default("") @db.VarChar(20)
+  Descricao     String? @db.VarChar(100)
+  ClassFiscal   String? @db.VarChar(8)
+  QtdePecas     Float?  @default(0)
+  QtdeAtendida  Float?  @default(0)
+  Peso          Float?  @default(0)
+  PesoAtendido  Float?  @default(0)
+  Unidade       String? @db.VarChar(3)
+  PrecoUnitario Float?  @default(0)
+  ValorTotal    Float?  @default(0)
+  ValorAtendido Float?  @default(0)
+
+  @@id([NumeroNF, CodigoCliente, CodigoProduto])
+}
+
+model itensnotafiscal002 {
+  NumLiberacao          Int     @default(0)
+  CodProduto            String  @default("") @db.VarChar(20)
+  Item                  Int     @default(0)
+  NumPedido             Int?    @default(0)
+  ItemPedido            Int?    @default(0)
+  DescricaoProd         String? @default("") @db.VarChar(120)
+  Complemento           String? @db.LongText
+  Unidade               String? @default("") @db.VarChar(3)
+  Qtde                  Float?  @default(0)
+  PrecoUnitario         Float?  @default(0)
+  CodTabela             String? @db.VarChar(10)
+  AliqICMS              Float?  @default(0)
+  BaseICMS              Float?  @default(0)
+  ValorICMS             Float?  @default(0)
+  BaseIcmsST            Float?  @default(0)
+  ValorIcmsST           Float?  @default(0)
+  IVA                   Float?  @default(0)
+  ClassFiscal           String? @default("") @db.VarChar(8)
+  AliqIPI               Float?  @default(0)
+  ValorIPI              Float?  @default(0)
+  SitTributaria         String? @default("000") @db.VarChar(3)
+  Desconto              Float?  @default(0)
+  TotalDescRateio       Float?  @default(0)
+  ValorFrete            Float?  @default(0)
+  ValorSeguro           Float?  @default(0)
+  ValorPis              Float?  @default(0)
+  ValorCofins           Float?  @default(0)
+  OutrasDespesas        Float?  @default(0)
+  PercComissao          Float?
+  NumLanctoEstoque      Int?    @default(0)
+  NatOperacao           String? @default("") @db.VarChar(5)
+  CompoeValorNF         String? @default("S") @db.VarChar(1)
+  ValorCreditoIcms      Float?  @default(0)
+  AliqCreditoIcms       Float?  @default(0)
+  DescontoSuframa       Float?  @default(0)
+  BaseCalculoII         Float?  @default(0)
+  ValorDespAduaneiras   Float?  @default(0)
+  ValorII               Float?  @default(0)
+  ValorIOF              Float?  @default(0)
+  DescontoEspecial      String? @default("N") @db.VarChar(2)
+  BasePartilhaICMS      Float?  @default(0)
+  ValorICmsRem          Float?  @default(0)
+  ValorIcmsDest         Float?  @default(0)
+  AliqFCP               Float?  @default(0)
+  ValorFCP              Float?  @default(0)
+  BaseFCP               Float?  @default(0)
+  BaseFCPST             Float?  @default(0)
+  AliqFCPST             Float?  @default(0)
+  ValorFCPST            Float?  @default(0)
+  UnidadeExterior       String? @db.VarChar(2)
+  QtdeExterior          Float?
+  PrecoUnitarioExterior Float?
+
+  @@id([NumLiberacao, CodProduto, Item])
+}
+
+model itensnotafiscal003 {
+  NumLiberacao          Int     @default(0)
+  CodProduto            String  @default("") @db.VarChar(20)
+  Item                  Int     @default(0)
+  NumPedido             Int?    @default(0)
+  ItemPedido            Int?    @default(0)
+  DescricaoProd         String? @default("") @db.VarChar(120)
+  Complemento           String? @db.LongText
+  Unidade               String? @default("") @db.VarChar(3)
+  Qtde                  Float?  @default(0)
+  PrecoUnitario         Float?  @default(0)
+  CodTabela             String? @db.VarChar(10)
+  AliqICMS              Float?  @default(0)
+  BaseICMS              Float?  @default(0)
+  ValorICMS             Float?  @default(0)
+  BaseIcmsST            Float?  @default(0)
+  ValorIcmsST           Float?  @default(0)
+  IVA                   Float?  @default(0)
+  ClassFiscal           String? @default("") @db.VarChar(8)
+  AliqIPI               Float?  @default(0)
+  ValorIPI              Float?  @default(0)
+  SitTributaria         String? @default("000") @db.VarChar(3)
+  Desconto              Float?  @default(0)
+  TotalDescRateio       Float?  @default(0)
+  ValorFrete            Float?  @default(0)
+  ValorSeguro           Float?  @default(0)
+  ValorPis              Float?  @default(0)
+  ValorCofins           Float?  @default(0)
+  OutrasDespesas        Float?  @default(0)
+  PercComissao          Float?
+  NumLanctoEstoque      Int?    @default(0)
+  NatOperacao           String? @default("") @db.VarChar(5)
+  CompoeValorNF         String? @default("S") @db.VarChar(1)
+  ValorCreditoIcms      Float?  @default(0)
+  AliqCreditoIcms       Float?  @default(0)
+  DescontoSuframa       Float?  @default(0)
+  BaseCalculoII         Float?  @default(0)
+  ValorDespAduaneiras   Float?  @default(0)
+  ValorII               Float?  @default(0)
+  ValorIOF              Float?  @default(0)
+  DescontoEspecial      String? @default("N") @db.VarChar(2)
+  BasePartilhaICMS      Float?  @default(0)
+  ValorICmsRem          Float?  @default(0)
+  ValorIcmsDest         Float?  @default(0)
+  AliqFCP               Float?  @default(0)
+  ValorFCP              Float?  @default(0)
+  BaseFCP               Float?  @default(0)
+  BaseFCPST             Float?  @default(0)
+  AliqFCPST             Float?  @default(0)
+  ValorFCPST            Float?  @default(0)
+  UnidadeExterior       String? @db.VarChar(2)
+  QtdeExterior          Float?
+  PrecoUnitarioExterior Float?
+
+  @@id([NumLiberacao, CodProduto, Item])
+}
+
+model itensorcamento002 {
+  NumOrcamento     Int
+  CodProduto       String  @db.VarChar(20)
+  NumItem          Int     @default(0)
+  Descricao        String? @db.VarChar(120)
+  Qtde             Float?  @default(0)
+  Unidade          String? @db.VarChar(3)
+  PrecoUnitario    Float?  @default(0)
+  CodTabela        String? @db.VarChar(10)
+  Desconto         Float?  @default(0)
+  AliqIPI          Float?  @default(0)
+  ValorIPI         Float?  @default(0)
+  Total            Float?  @default(0)
+  TotalDescRateio  Float?  @default(0)
+  DescontoEspecial String? @default("N") @db.VarChar(1)
+
+  @@id([NumOrcamento, CodProduto, NumItem])
+}
+
+model itensorcamento003 {
+  NumOrcamento     Int
+  CodProduto       String  @db.VarChar(20)
+  NumItem          Int     @default(0)
+  Descricao        String? @db.VarChar(120)
+  Qtde             Float?  @default(0)
+  Unidade          String? @db.VarChar(3)
+  PrecoUnitario    Float?  @default(0)
+  CodTabela        String? @db.VarChar(10)
+  Desconto         Float?  @default(0)
+  AliqIPI          Float?  @default(0)
+  ValorIPI         Float?  @default(0)
+  Total            Float?  @default(0)
+  TotalDescRateio  Float?  @default(0)
+  DescontoEspecial String? @default("N") @db.VarChar(1)
+
+  @@id([NumOrcamento, CodProduto, NumItem])
+}
+
+model itensorcamentoscompra002 {
+  NumOrcamento     Int
+  CodProduto       String  @db.VarChar(20)
+  Item             Int
+  Descricao        String? @db.VarChar(60)
+  Embalagem        String? @db.VarChar(20)
+  Qtde             Float?  @default(0)
+  PrecoUnitario    Float?  @default(0)
+  AliqIPI          Float?  @default(0)
+  ValorIPI         Float?  @default(0)
+  AliqICMS         Float?  @default(0)
+  ValorICMS        Float?  @default(0)
+  AliqST           Float?  @default(0)
+  ValorST          Float?  @default(0)
+  CodCentroCusto   String? @db.VarChar(10)
+  CodigoVendedor   Int?    @default(0)
+  Unidade          String? @db.VarChar(2)
+  PercDesconto1    Float?  @default(0)
+  PercDesconto2    Float?  @default(0)
+  PercDesconto3    Float?  @default(0)
+  DescontoUnitario Float?  @default(0)
+  ValorDesconto    Float?  @default(0)
+  NumControle      String? @db.VarChar(10)
+
+  @@id([NumOrcamento, CodProduto, Item])
+}
+
+model itensorcamentoscompra003 {
+  NumOrcamento     Int
+  CodProduto       String  @db.VarChar(20)
+  Item             Int
+  Descricao        String? @db.VarChar(60)
+  Embalagem        String? @db.VarChar(20)
+  Qtde             Float?  @default(0)
+  PrecoUnitario    Float?  @default(0)
+  AliqIPI          Float?  @default(0)
+  ValorIPI         Float?  @default(0)
+  AliqICMS         Float?  @default(0)
+  ValorICMS        Float?  @default(0)
+  AliqST           Float?  @default(0)
+  ValorST          Float?  @default(0)
+  CodCentroCusto   String? @db.VarChar(10)
+  CodigoVendedor   Int?    @default(0)
+  Unidade          String? @db.VarChar(2)
+  PercDesconto1    Float?  @default(0)
+  PercDesconto2    Float?  @default(0)
+  PercDesconto3    Float?  @default(0)
+  DescontoUnitario Float?  @default(0)
+  ValorDesconto    Float?  @default(0)
+  NumControle      String? @db.VarChar(10)
+
+  @@id([NumOrcamento, CodProduto, Item])
+}
+
+model itenspedidos002 {
+  NumPedido        Int       @default(0)
+  CodProduto       String    @default("") @db.VarChar(20)
+  Item             Int
+  NumOrcamento     Int?
+  Descricao        String?   @db.VarChar(120)
+  Qtde             Float?    @default(0)
+  QtdeAtendida     Float?    @default(0)
+  QtdeFinalizada   Float?    @default(0)
+  Unidade          String?   @db.VarChar(3)
+  CodTabela        String?   @db.VarChar(10)
+  PrecoUnitario    Float?    @default(0)
+  Desconto         Float?    @default(0)
+  SitTributaria    String?   @db.VarChar(4)
+  AliqIPI          Float?    @default(0)
+  ValorIPI         Float?    @default(0)
+  IVA              Float?    @default(0)
+  AliqIcms         Float?    @default(0)
+  BaseIcms         Float?    @default(0)
+  ValorIcms        Float?    @default(0)
+  BaseIcmsST       Float?    @default(0)
+  ValorIcmsST      Float?    @default(0)
+  Total            Float?    @default(0)
+  NumLiberacao     Int?
+  PercComissao     Float?    @default(0)
+  TotalDescRateio  Float?    @default(0)
+  DescontoEspecial String?   @default("N") @db.VarChar(1)
+  DataFinalizada   DateTime? @db.Date
+
+  @@id([NumPedido, CodProduto, Item])
+  @@index([NumPedido, CodProduto, Item], map: "idx_itenspedidos")
+}
+
+model itenspedidos003 {
+  NumPedido        Int       @default(0)
+  CodProduto       String    @default("") @db.VarChar(20)
+  Item             Int
+  NumOrcamento     Int?
+  Descricao        String?   @db.VarChar(120)
+  Qtde             Float?    @default(0)
+  QtdeAtendida     Float?    @default(0)
+  QtdeFinalizada   Float?    @default(0)
+  Unidade          String?   @db.VarChar(3)
+  CodTabela        String?   @db.VarChar(10)
+  PrecoUnitario    Float?    @default(0)
+  Desconto         Float?    @default(0)
+  SitTributaria    String?   @db.VarChar(4)
+  AliqIPI          Float?    @default(0)
+  ValorIPI         Float?    @default(0)
+  IVA              Float?    @default(0)
+  AliqIcms         Float?    @default(0)
+  BaseIcms         Float?    @default(0)
+  ValorIcms        Float?    @default(0)
+  BaseIcmsST       Float?    @default(0)
+  ValorIcmsST      Float?    @default(0)
+  Total            Float?    @default(0)
+  NumLiberacao     Int?
+  PercComissao     Float?    @default(0)
+  TotalDescRateio  Float?    @default(0)
+  DescontoEspecial String?   @default("N") @db.VarChar(1)
+  DataFinalizada   DateTime? @db.Date
+
+  @@id([NumPedido, CodProduto, Item])
+}
+
+model itenspedidoscompra002 {
+  NumPedido        Int
+  CodProduto       String  @db.VarChar(20)
+  Item             Int
+  ItemSequencia    Int?    @default(0)
+  Descricao        String? @db.VarChar(60)
+  Embalagem        String? @db.VarChar(20)
+  Qtde             Float?  @default(0)
+  QtdeAtendida     Float?  @default(0)
+  QtdeFinalizada   Float?  @default(0)
+  QtdeRecebida     Float?  @default(0)
+  PrecoUnitario    Float?  @default(0)
+  AliqIPI          Float?  @default(0)
+  ValorIPI         Float?  @default(0)
+  AliqICMS         Float?  @default(0)
+  ValorICMS        Float?  @default(0)
+  AliqST           Float?  @default(0)
+  ValorST          Float?  @default(0)
+  CodCentroCusto   String? @db.VarChar(10)
+  NumRequisicao    Int?    @default(0)
+  CodigoVendedor   Int?    @default(0)
+  Unidade          String? @db.VarChar(2)
+  PercDesconto1    Float?  @default(0)
+  PercDesconto2    Float?  @default(0)
+  PercDesconto3    Float?  @default(0)
+  ValorDesconto    Float?  @default(0)
+  DescontoUnitario Float?  @default(0)
+  NumLanctoEstoque Int?    @default(0)
+  NumLiberacao     Int?
+  NumControle      String? @db.VarChar(10)
+
+  @@id([NumPedido, CodProduto, Item])
+}
+
+model itenspedidoscompra003 {
+  NumPedido        Int
+  CodProduto       String  @db.VarChar(20)
+  Item             Int
+  ItemSequencia    Int?    @default(0)
+  Descricao        String? @db.VarChar(60)
+  Embalagem        String? @db.VarChar(20)
+  Qtde             Float?  @default(0)
+  QtdeAtendida     Float?  @default(0)
+  QtdeFinalizada   Float?  @default(0)
+  QtdeRecebida     Float?  @default(0)
+  PrecoUnitario    Float?  @default(0)
+  AliqIPI          Float?  @default(0)
+  ValorIPI         Float?  @default(0)
+  AliqICMS         Float?  @default(0)
+  ValorICMS        Float?  @default(0)
+  AliqST           Float?  @default(0)
+  ValorST          Float?  @default(0)
+  CodCentroCusto   String? @db.VarChar(10)
+  NumRequisicao    Int?    @default(0)
+  CodigoVendedor   Int?    @default(0)
+  Unidade          String? @db.VarChar(2)
+  PercDesconto1    Float?  @default(0)
+  PercDesconto2    Float?  @default(0)
+  PercDesconto3    Float?  @default(0)
+  ValorDesconto    Float?  @default(0)
+  DescontoUnitario Float?  @default(0)
+  NumLanctoEstoque Int?    @default(0)
+  NumLiberacao     Int?
+  NumControle      String? @db.VarChar(10)
+
+  @@id([NumPedido, CodProduto, Item])
+}
+
+model iva002 {
+  UF            String @default("") @db.VarChar(2)
+  ClassFiscal   String @default("") @db.VarChar(10)
+  PercAdicional Float? @default(0)
+
+  @@id([UF, ClassFiscal])
+}
+
+model iva003 {
+  UF            String @default("") @db.VarChar(2)
+  ClassFiscal   String @default("") @db.VarChar(10)
+  PercAdicional Float? @default(0)
+
+  @@id([UF, ClassFiscal])
+}
+
+model layoutcheque {
+  CODBAN  Int     @id @default(0)
+  VLR_LIN Int?    @default(0)
+  VLR_COL Int?    @default(0)
+  EX1_LIN Int?    @default(0)
+  EX1_COL Int?    @default(0)
+  EX2_LIN Int?    @default(0)
+  EX2_COL Int?    @default(0)
+  FAV_LIN Int?    @default(0)
+  FAV_COL Int?    @default(0)
+  LOC_LIN Int?    @default(0)
+  LOC_COL Int?    @default(0)
+  DIA_LIN Int?    @default(0)
+  DIA_COL Int?    @default(0)
+  MES_LIN Int?    @default(0)
+  MES_COL Int?    @default(0)
+  ANO_LIN Int?    @default(0)
+  ANO_COL Int?    @default(0)
+  PRE_LIN Int?    @default(0)
+  PRE_COL Int?    @default(0)
+  TIPFORM String? @db.VarChar(1)
+  QTDLINF Int?    @default(0)
+}
+
+model lembretecompras {
+  CodFornecedor Int
+  Data          DateTime @db.Date
+  Historico     String?  @db.LongText
+
+  @@id([CodFornecedor, Data])
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model logexclusaodocumentos002 {
+  NumLancto      Int?
+  NumDocto       String?   @db.VarChar(15)
+  DataExclusao   DateTime? @db.Date
+  MotivoExclusao String?   @db.VarChar(150)
+  Usuario        String?   @db.VarChar(40)
+  Tipo           Int?      @default(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model logexclusaodocumentos003 {
+  NumLancto      Int?
+  NumDocto       String?   @db.VarChar(15)
+  DataExclusao   DateTime? @db.Date
+  MotivoExclusao String?   @db.VarChar(150)
+  Usuario        String?   @db.VarChar(40)
+  Tipo           Int?      @default(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model logexclusaoduplicatas002 {
+  NumLancto      Int?
+  NumDupl        String?   @db.VarChar(15)
+  DataExclusao   DateTime? @db.Date
+  MotivoExclusao String?   @db.VarChar(150)
+  Usuario        String?   @db.VarChar(40)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model logexclusaoduplicatas003 {
+  NumLancto      Int?
+  NumDupl        String?   @db.VarChar(15)
+  DataExclusao   DateTime? @db.Date
+  MotivoExclusao String?   @db.VarChar(150)
+  Usuario        String?   @db.VarChar(40)
+
+  @@ignore
+}
+
+model modelodocto {
+  Codigo    String  @id @default("0") @db.VarChar(2)
+  Descricao String? @db.VarChar(100)
+}
+
+model motivo {
+  Codigo    Int     @id
+  Descricao String? @db.VarChar(30)
+}
+
+model movimentocheque002 {
+  CodCliente  Int
+  Banco       String    @db.VarChar(3)
+  Numero      String    @db.VarChar(6)
+  NumPedido   Int?
+  Agencia     String?   @db.VarChar(5)
+  DataVencto  DateTime? @db.Date
+  ValorCheque Float?
+  DataCompra  DateTime? @db.Date
+  NomeTitular String?   @db.VarChar(40)
+  CodMotivo   Int?
+  Observacao  String?   @db.LongText
+  NumDupl     String?   @db.VarChar(40)
+  Destino     String?   @db.VarChar(30)
+  DataDestino DateTime? @db.Date
+
+  @@id([CodCliente, Banco, Numero])
+}
+
+model movimentocheque003 {
+  CodCliente  Int
+  Banco       String    @db.VarChar(3)
+  Numero      String    @db.VarChar(6)
+  NumPedido   Int?
+  Agencia     String?   @db.VarChar(5)
+  DataVencto  DateTime? @db.Date
+  ValorCheque Float?
+  DataCompra  DateTime? @db.Date
+  NomeTitular String?   @db.VarChar(40)
+  CodMotivo   Int?
+  Observacao  String?   @db.LongText
+  NumDupl     String?   @db.VarChar(40)
+  Destino     String?   @db.VarChar(30)
+  DataDestino DateTime? @db.Date
+
+  @@id([CodCliente, Banco, Numero])
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model movimentocompras002 {
+  NumDocumento     String?   @db.VarChar(10)
+  CodProduto       String?   @db.VarChar(20)
+  Item             Int?      @default(0)
+  NumPedido        Int?      @default(0)
+  NumLanctoCPG     Int?      @default(0)
+  CodFornecedor    Int?      @default(0)
+  NatOperacao      String?   @db.VarChar(5)
+  DataEmissao      DateTime? @db.Date
+  Descricao        String?   @db.VarChar(60)
+  Qtde             Float?    @default(0)
+  PrecoUnitario    Float?    @default(0)
+  ValorFrete       Float?
+  AliqIPI          Float?    @default(0)
+  ValorIPI         Float?    @default(0)
+  BaseIcms         Float?
+  AliqICMS         Float?    @default(0)
+  ValorICMS        Float?    @default(0)
+  Cst              String?   @db.VarChar(4)
+  BaseIcmsST       Float?
+  AliqST           Float?    @default(0)
+  ValorST          Float?    @default(0)
+  ValorTotal       Float?    @default(0)
+  NumLanctoEstoque Int?      @default(0)
+  DataBaixa        DateTime? @db.Date
+  ValorParcial     Float?    @default(0)
+  Observacao       String?   @db.VarChar(60)
+  ModeloDocto      String?   @db.VarChar(2)
+  ChvDocto         String?   @db.VarChar(44)
+  SerieDocto       String?   @db.VarChar(4)
+  ClassFiscal      String?   @db.VarChar(8)
+  NumControle      String?   @db.VarChar(10)
+  Unidade          String?   @db.VarChar(3)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model movimentocompras003 {
+  NumDocumento     String?   @db.VarChar(10)
+  CodProduto       String?   @db.VarChar(20)
+  Item             Int?      @default(0)
+  NumPedido        Int?      @default(0)
+  NumLanctoCPG     Int?      @default(0)
+  CodFornecedor    Int?      @default(0)
+  NatOperacao      String?   @db.VarChar(5)
+  DataEmissao      DateTime? @db.Date
+  Descricao        String?   @db.VarChar(60)
+  Qtde             Float?    @default(0)
+  PrecoUnitario    Float?    @default(0)
+  ValorFrete       Float?
+  AliqIPI          Float?    @default(0)
+  ValorIPI         Float?    @default(0)
+  BaseIcms         Float?
+  AliqICMS         Float?    @default(0)
+  ValorICMS        Float?    @default(0)
+  Cst              String?   @db.VarChar(4)
+  BaseIcmsST       Float?
+  AliqST           Float?    @default(0)
+  ValorST          Float?    @default(0)
+  ValorTotal       Float?    @default(0)
+  NumLanctoEstoque Int?      @default(0)
+  DataBaixa        DateTime? @db.Date
+  ValorParcial     Float?    @default(0)
+  Observacao       String?   @db.VarChar(60)
+  ModeloDocto      String?   @db.VarChar(2)
+  ChvDocto         String?   @db.VarChar(44)
+  SerieDocto       String?   @db.VarChar(4)
+  ClassFiscal      String?   @db.VarChar(8)
+  NumControle      String?   @db.VarChar(10)
+  Unidade          String?   @db.VarChar(3)
+
+  @@ignore
+}
+
+model movtoestoqueproduto002 {
+  NumLancamento  Int       @id @default(autoincrement())
+  Data           DateTime? @db.Date
+  TipoLancamento Int?
+  CodProduto     String?   @db.VarChar(20)
+  ValorProduto   Float?
+  NumDocumento   Int?
+  Tipo           String?   @db.VarChar(2)
+  Qtde           Float?
+  NumLiberacao   Int?
+  Observacao     String?   @db.LongText
+  NomeUsuario    String?   @db.VarChar(30)
+  DestinoProduto Int?      @default(0)
+}
+
+model movtoestoqueproduto003 {
+  NumLancamento  Int       @id @default(autoincrement())
+  Data           DateTime? @db.Date
+  TipoLancamento Int?
+  CodProduto     String?   @db.VarChar(20)
+  ValorProduto   Float?
+  NumDocumento   Int?
+  Tipo           String?   @db.VarChar(2)
+  Qtde           Float?
+  NumLiberacao   Int?
+  Observacao     String?   @db.LongText
+  NomeUsuario    String?   @db.VarChar(30)
+  DestinoProduto Int?      @default(0)
+}
+
+model municipios {
+  Codigo String  @id @default("0") @db.VarChar(7)
+  Nome   String? @db.VarChar(37)
+  UF     String? @db.VarChar(2)
+}
+
+model natoperacao {
+  Codigo                String  @id @default("") @db.VarChar(7)
+  CodigoNF              String? @db.VarChar(11)
+  Descricao             String? @db.VarChar(60)
+  Tipo                  String? @default("N") @db.Char(1)
+  IsentoICMS            String? @default("S") @db.Char(1)
+  IsentoIPI             String? @default("S") @db.Char(1)
+  CodigoRetorno         String? @db.VarChar(5)
+  CST                   String? @default("00") @db.VarChar(50)
+  Observacao1           String? @db.VarChar(150)
+  Observacao2           String? @db.VarChar(150)
+  CalculaST             String? @default("N") @db.Char(1)
+  ControlaEnvioRetorno  String? @default("N") @db.Char(1)
+  TipoLanctoEstoque     Int?    @default(0)
+  DevolucaoMercadoria   String? @db.VarChar(1)
+  CalculaPartilhaIcms   String? @default("N") @db.Char(1)
+  CalculaQtdeTributavel String? @default("N") @db.VarChar(1)
+}
+
+model nfentrada002 {
+  NumeroNF      Int       @id
+  CodigoCliente Int?      @default(0)
+  DataLancto    DateTime? @db.Date
+  DataNF        DateTime? @db.Date
+  PedidoCliente String?   @db.VarChar(20)
+  Observacao1   String?   @db.VarChar(100)
+  Observacao2   String?   @db.VarChar(100)
+  Observacao3   String?   @db.VarChar(100)
+  Observacao4   String?   @db.VarChar(100)
+}
+
+model nfentrada003 {
+  NumeroNF      Int       @id
+  CodigoCliente Int?      @default(0)
+  DataLancto    DateTime? @db.Date
+  DataNF        DateTime? @db.Date
+  PedidoCliente String?   @db.VarChar(20)
+  Observacao1   String?   @db.VarChar(100)
+  Observacao2   String?   @db.VarChar(100)
+  Observacao3   String?   @db.VarChar(100)
+  Observacao4   String?   @db.VarChar(100)
+}
+
+model notafiscal002 {
+  NumLiberacao        Int       @id @default(0)
+  NumeroNF            Int?      @default(0)
+  NumPedido           Int?      @default(0)
+  TipoNota            Int?      @default(1)
+  Data                DateTime? @default(dbgenerated("'0000-00-00'")) @db.Date
+  DataSaida           DateTime? @default(dbgenerated("'0000-00-00'")) @db.Date
+  HoraSaida           DateTime? @default(dbgenerated("'0000-00-00'")) @db.Date
+  Cliente             Int?      @default(0)
+  UsoConsumo          String?   @db.VarChar(1)
+  AtualizaEstoque     String?   @db.VarChar(1)
+  PedidoCliente       String?   @db.VarChar(20)
+  Vendedor            Int?      @default(0)
+  Banco               Int?      @default(0)
+  TipoCobranca        Int?      @default(0)
+  Transportadora      Int?      @default(0)
+  Frete               String?   @db.VarChar(1)
+  ValorFrete          Float?    @default(0)
+  ValorSeguro         Float?    @default(0)
+  PlacaVeiculo        String?   @db.VarChar(8)
+  UFVeiculo           String?   @db.VarChar(2)
+  Motorista           String?   @db.VarChar(30)
+  PercDescontoSuframa Float?    @default(0)
+  ValorDesconto       Float?    @default(0)
+  PercDesconto1       Float?    @default(0)
+  PercDesconto2       Float?    @default(0)
+  PercDesconto3       Float?    @default(0)
+  PercDesconto4       Float?    @default(0)
+  DescontoReferente   String?   @db.VarChar(60)
+  AcrescimoDia        Float?    @default(0)
+  AcrescimoMes        Float?    @default(0)
+  QtdeEmbalagem       Float?    @default(0)
+  Especie             String?   @db.VarChar(20)
+  MarcaVolume         String?   @db.VarChar(15)
+  NumeroVolume        String?   @db.VarChar(10)
+  PesoBruto           Float?    @default(0)
+  PesoLiquido         Float?    @default(0)
+  AliqICMS            Float?    @default(0)
+  BaseICMS            Float?    @default(0)
+  ValorICMS           Float?    @default(0)
+  OutrasDespesas      Float?    @default(0)
+  BaseIcmsST          Float?    @default(0)
+  ValorIcmsST         Float?    @default(0)
+  ValorProdutos       Float?    @default(0)
+  ValorIPI            Float?    @default(0)
+  ValorNota           Float?    @default(0)
+  ValorComissao       Float?    @default(0)
+  AliqPis             Float?    @default(0)
+  ValorPis            Float?    @default(0)
+  AliqCofins          Float?    @default(0)
+  ValorCofins         Float?    @default(0)
+  AliqCreditoIcms     Float?    @default(0)
+  ValorCreditoIcms    Float?    @default(0)
+  LanctoCR            Int?      @default(0)
+  StatusNF            Int?      @default(0)
+  NFComplementar      String?   @db.VarChar(4)
+  NroChave            String?   @db.VarChar(44)
+  NroRecibo           String?   @db.VarChar(20)
+  NroProtocolo        String?   @db.VarChar(20)
+  UFEmbarque          String?   @db.VarChar(2)
+  LocalEmbarque       String?   @db.VarChar(60)
+  BaseCalculoII       Float?    @default(0)
+  ValorDespAduaneiras Float?    @default(0)
+  ValorII             Float?    @default(0)
+  ValorIOF            Float?    @default(0)
+  Dia1                Int?      @default(0)
+  Dia2                Int?      @default(0)
+  Dia3                Int?      @default(0)
+  Dia4                Int?      @default(0)
+  Dia5                Int?      @default(0)
+  Dia6                Int?      @default(0)
+  Dia7                Int?      @default(0)
+  Dia8                Int?      @default(0)
+  Dia9                Int?      @default(0)
+  NumeroNFReservada   Int?      @default(0)
+  Cotacao             Float?    @default(0)
+  FinalidadeNF        Int?      @default(1)
+  NumeroNFReferencia  Int?      @default(0)
+  ValorFCP            Float?    @default(0)
+  ValorICMSDest       Float?    @default(0)
+  ValorICMSRem        Float?    @default(0)
+  LogEnvioNFe         String?   @db.LongText
+}
+
+model notafiscal003 {
+  NumLiberacao        Int       @id @default(0)
+  NumeroNF            Int?      @default(0)
+  NumPedido           Int?      @default(0)
+  TipoNota            Int?      @default(1)
+  Data                DateTime? @default(dbgenerated("'0000-00-00'")) @db.Date
+  DataSaida           DateTime? @default(dbgenerated("'0000-00-00'")) @db.Date
+  HoraSaida           DateTime? @default(dbgenerated("'0000-00-00'")) @db.Date
+  Cliente             Int?      @default(0)
+  UsoConsumo          String?   @db.VarChar(1)
+  AtualizaEstoque     String?   @db.VarChar(1)
+  PedidoCliente       String?   @db.VarChar(20)
+  Vendedor            Int?      @default(0)
+  Banco               Int?      @default(0)
+  TipoCobranca        Int?      @default(0)
+  Transportadora      Int?      @default(0)
+  Frete               String?   @db.VarChar(1)
+  ValorFrete          Float?    @default(0)
+  ValorSeguro         Float?    @default(0)
+  PlacaVeiculo        String?   @db.VarChar(8)
+  UFVeiculo           String?   @db.VarChar(2)
+  Motorista           String?   @db.VarChar(30)
+  PercDescontoSuframa Float?    @default(0)
+  ValorDesconto       Float?    @default(0)
+  PercDesconto1       Float?    @default(0)
+  PercDesconto2       Float?    @default(0)
+  PercDesconto3       Float?    @default(0)
+  PercDesconto4       Float?    @default(0)
+  DescontoReferente   String?   @db.VarChar(20)
+  AcrescimoDia        Float?    @default(0)
+  AcrescimoMes        Float?    @default(0)
+  QtdeEmbalagem       Float?    @default(0)
+  Especie             String?   @db.VarChar(20)
+  MarcaVolume         String?   @db.VarChar(15)
+  NumeroVolume        String?   @db.VarChar(10)
+  PesoBruto           Float?    @default(0)
+  PesoLiquido         Float?    @default(0)
+  AliqICMS            Float?    @default(0)
+  BaseICMS            Float?    @default(0)
+  ValorICMS           Float?    @default(0)
+  OutrasDespesas      Float?    @default(0)
+  BaseIcmsST          Float?    @default(0)
+  ValorIcmsST         Float?    @default(0)
+  ValorProdutos       Float?    @default(0)
+  ValorIPI            Float?    @default(0)
+  ValorNota           Float?    @default(0)
+  ValorComissao       Float?    @default(0)
+  AliqPis             Float?    @default(0)
+  ValorPis            Float?    @default(0)
+  AliqCofins          Float?    @default(0)
+  ValorCofins         Float?    @default(0)
+  AliqCreditoIcms     Float?    @default(0)
+  ValorCreditoIcms    Float?    @default(0)
+  LanctoCR            Int?      @default(0)
+  StatusNF            Int?      @default(0)
+  NFComplementar      String?   @db.VarChar(4)
+  NroChave            String?   @db.VarChar(44)
+  NroRecibo           String?   @db.VarChar(20)
+  NroProtocolo        String?   @db.VarChar(20)
+  UFEmbarque          String?   @db.VarChar(2)
+  LocalEmbarque       String?   @db.VarChar(60)
+  BaseCalculoII       Float?    @default(0)
+  ValorDespAduaneiras Float?    @default(0)
+  ValorII             Float?    @default(0)
+  ValorIOF            Float?    @default(0)
+  Dia1                Int?      @default(0)
+  Dia2                Int?      @default(0)
+  Dia3                Int?      @default(0)
+  Dia4                Int?      @default(0)
+  Dia5                Int?      @default(0)
+  Dia6                Int?      @default(0)
+  Dia7                Int?      @default(0)
+  Dia8                Int?      @default(0)
+  Dia9                Int?      @default(0)
+  NumeroNFReservada   Int?      @default(0)
+  Cotacao             Float?    @default(0)
+  FinalidadeNF        Int?      @default(1)
+  NumeroNFReferencia  Int?      @default(0)
+  ValorFCP            Float?    @default(0)
+  ValorICMSDest       Float?    @default(0)
+  ValorICMSRem        Float?    @default(0)
+  LogEnvioNFe         String?   @db.LongText
+}
+
+model numeroextrato {
+  NumeroExtrato Int       @id @default(0)
+  Data          DateTime? @db.Date
+  Hora          String?   @db.VarChar(6)
+}
+
+model obsnotafiscal002 {
+  NumLiberacao  Int     @default(0)
+  CodObservacao Int     @default(0)
+  observacao    String? @db.LongText
+
+  @@id([NumLiberacao, CodObservacao])
+}
+
+model obsnotafiscal003 {
+  NumLiberacao  Int     @default(0)
+  CodObservacao Int     @default(0)
+  observacao    String? @db.LongText
+
+  @@id([NumLiberacao, CodObservacao])
+}
+
+model orcamento002 {
+  Numero         Int       @id @default(autoincrement())
+  CodigoCliente  Int?
+  Data           DateTime? @db.Date
+  DataValidade   DateTime? @db.Date
+  Vendedor       Int?      @default(0)
+  Transportadora Int?      @default(0)
+  TipoFrete      Int?      @default(0)
+  Contato        String?   @db.VarChar(60)
+  PrazoEntrega   String?   @db.VarChar(60)
+  PercDesconto1  Float?    @default(0)
+  PercDesconto2  Float?    @default(0)
+  PercDesconto3  Float?    @default(0)
+  PercDesconto4  Float?    @default(0)
+  Perc2Desconto1 Float?    @default(0)
+  Perc2Desconto2 Float?    @default(0)
+  Perc2Desconto3 Float?    @default(0)
+  Perc2Desconto4 Float?    @default(0)
+  ValorDesconto  Float?    @default(0)
+  Observacao     String?   @db.LongText
+  TipoOrcamento  String?   @db.VarChar(1)
+  Dia1           Int?      @default(0)
+  Dia2           Int?      @default(0)
+  Dia3           Int?      @default(0)
+  Dia4           Int?      @default(0)
+  Dia5           Int?      @default(0)
+  Dia6           Int?      @default(0)
+  Dia7           Int?      @default(0)
+  Dia8           Int?      @default(0)
+  Dia9           Int?      @default(0)
+  PercRateio1    Float?    @default(0)
+  PercRateio2    Float?    @default(0)
+  TipoRateio     String?   @db.VarChar(1)
+}
+
+model orcamento003 {
+  Numero         Int       @id @default(autoincrement())
+  CodigoCliente  Int?
+  Data           DateTime? @db.Date
+  DataValidade   DateTime? @db.Date
+  Vendedor       Int?      @default(0)
+  Transportadora Int?      @default(0)
+  TipoFrete      Int?      @default(0)
+  Contato        String?   @db.VarChar(60)
+  PrazoEntrega   String?   @db.VarChar(60)
+  PercDesconto1  Float?    @default(0)
+  PercDesconto2  Float?    @default(0)
+  PercDesconto3  Float?    @default(0)
+  PercDesconto4  Float?    @default(0)
+  Perc2Desconto1 Float?    @default(0)
+  Perc2Desconto2 Float?    @default(0)
+  Perc2Desconto3 Float?    @default(0)
+  Perc2Desconto4 Float?    @default(0)
+  ValorDesconto  Float?    @default(0)
+  Observacao     String?   @db.LongText
+  TipoOrcamento  String?   @db.VarChar(1)
+  Dia1           Int?      @default(0)
+  Dia2           Int?      @default(0)
+  Dia3           Int?      @default(0)
+  Dia4           Int?      @default(0)
+  Dia5           Int?      @default(0)
+  Dia6           Int?      @default(0)
+  Dia7           Int?      @default(0)
+  Dia8           Int?      @default(0)
+  Dia9           Int?      @default(0)
+  PercRateio1    Float?    @default(0)
+  PercRateio2    Float?    @default(0)
+  TipoRateio     String?   @db.VarChar(1)
+}
+
+model orcamentoscompra002 {
+  Numero           Int       @id @default(0)
+  Fornecedor       Int?      @default(0)
+  PedidoFornecedor String?   @db.VarChar(10)
+  Contato          String?   @db.VarChar(60)
+  DataEntrada      DateTime? @db.Date
+  DataEntrega      DateTime? @db.Date
+  CondicaoPgto     String?   @db.VarChar(60)
+  CondPgto1        Float?    @default(0)
+  CondPgto2        Float?    @default(0)
+  CondPgto3        Float?    @default(0)
+  CondPgto4        Float?    @default(0)
+  CondPgto5        Float?    @default(0)
+  CondPgto6        Float?    @default(0)
+  CondPgto7        Float?    @default(0)
+  CondPgto8        Float?    @default(0)
+  CondPgto9        Float?    @default(0)
+  CondPgto10       Float?    @default(0)
+  CondPgto11       Float?    @default(0)
+  CondPgto12       Float?    @default(0)
+  Comprador        String?   @db.VarChar(60)
+  TipoFrete        Int?
+  ValorFrete       Float?    @default(0)
+  ValorSeguro      Float?    @default(0)
+  Observacao       String?   @db.LongText
+  Total            Float?    @default(0)
+  PercDesconto1    Float?    @default(0)
+  PercDesconto2    Float?    @default(0)
+  PercDesconto3    Float?    @default(0)
+  ValorDesconto    Float?    @default(0)
+}
+
+model orcamentoscompra003 {
+  Numero           Int       @id @default(0)
+  Fornecedor       Int?      @default(0)
+  PedidoFornecedor String?   @db.VarChar(10)
+  Contato          String?   @db.VarChar(60)
+  DataEntrada      DateTime? @db.Date
+  DataEntrega      DateTime? @db.Date
+  CondicaoPgto     String?   @db.VarChar(60)
+  CondPgto1        Float?    @default(0)
+  CondPgto2        Float?    @default(0)
+  CondPgto3        Float?    @default(0)
+  CondPgto4        Float?    @default(0)
+  CondPgto5        Float?    @default(0)
+  CondPgto6        Float?    @default(0)
+  CondPgto7        Float?    @default(0)
+  CondPgto8        Float?    @default(0)
+  CondPgto9        Float?    @default(0)
+  CondPgto10       Float?    @default(0)
+  CondPgto11       Float?    @default(0)
+  CondPgto12       Float?    @default(0)
+  Comprador        String?   @db.VarChar(60)
+  TipoFrete        Int?
+  ValorFrete       Float?    @default(0)
+  ValorSeguro      Float?    @default(0)
+  Observacao       String?   @db.LongText
+  Total            Float?    @default(0)
+  PercDesconto1    Float?    @default(0)
+  PercDesconto2    Float?    @default(0)
+  PercDesconto3    Float?    @default(0)
+  ValorDesconto    Float?    @default(0)
+}
+
+model pais {
+  Codigo String  @id @default("") @db.VarChar(5)
+  Nome   String? @db.VarChar(60)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model parametro {
+  Versao                  String?   @db.VarChar(3)
+  BancoPadrao             Int?      @default(0)
+  FormaPgtoPadrao         Int?      @default(0)
+  FormaRectoPadrao        Int?      @default(0)
+  MascaraCcusto           String?   @db.VarChar(20)
+  DataFluxo               DateTime? @db.Date
+  FluxoCheque             String?   @db.VarChar(1)
+  QtdeCopiaCheque         Int?      @default(0)
+  BaixaComp               String?   @db.VarChar(1)
+  BaixaChequePre          String?   @db.VarChar(1)
+  BancoRemessa            Int?      @default(0)
+  TipoCobrancaRemessa     Int?      @default(0)
+  DataDefaultRemessa      String?   @db.VarChar(1)
+  ImprimeEnderecoRemessa  String?   @db.VarChar(1)
+  EditaNumeroRemessa      String?   @db.VarChar(1)
+  ReprogramaFluxo         String?   @db.VarChar(1)
+  UsaChequeRecebidos      String?   @db.VarChar(1)
+  UsaControleTalao        String?   @db.VarChar(1)
+  DespBancariaCompoeSaldo String?   @db.VarChar(1)
+  DespCartorioCompoeSaldo String?   @db.VarChar(1)
+  ConsideraPendentesFluxo String?   @db.VarChar(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model parametros002 {
+  IntegraCR                          String? @db.VarChar(1)
+  IntegraCP                          String  @db.VarChar(1)
+  FaturamentoSNF                     String? @db.VarChar(1)
+  ProrrogaVencto                     String? @db.VarChar(1)
+  AtualizaEstoque                    String? @db.VarChar(1)
+  EstoqueNegativo                    String? @db.VarChar(1)
+  ComissaoCIPI                       String? @db.VarChar(1)
+  ComissaoVendedor                   String? @db.VarChar(1)
+  ComissaoProduto                    String? @db.VarChar(1)
+  ComissaoCliente                    String? @db.VarChar(1)
+  PerctoCofins                       Float?  @default(0) @db.Float
+  PerctoContrSocial                  Float?  @default(0) @db.Float
+  PerctoPIS                          Float?  @default(0) @db.Float
+  OptanteSimplesFederal              String? @db.VarChar(1)
+  AliquotaIcms                       Float?  @default(0) @db.Float
+  NatOperacaoST                      String? @db.VarChar(5)
+  TipoTabela                         String? @db.VarChar(1)
+  PrioridadeTabela                   String? @db.VarChar(1)
+  EmpresaDefaultPedido               Int?    @default(0) @db.SmallInt
+  EmpresaDefaultEstoque              Int?    @default(0) @db.SmallInt
+  IntegraFI                          String? @db.VarChar(1)
+  LancaPrevisaoFI                    String? @db.VarChar(1)
+  AtualizaEstoqueMaterial            String? @db.VarChar(1)
+  AtualizaCustoMaterial              String? @db.VarChar(1)
+  LanctoEntradaEstoque               Int?
+  LanctoEntradaProvEstoque           Int?
+  LanctoEstornoEntradaEstoque        Int?
+  VersaoCompra                       String? @db.VarChar(10)
+  VersaoFinanceiro                   String? @db.VarChar(10)
+  TipoDefault                        Int?    @default(1)
+  AtualizaEstoqueMaterialBaixaPedido String? @default("S") @db.VarChar(1)
+  UtilizaDestinoMaterial             String? @default("N") @db.VarChar(1)
+  SequenciaCodigoBarras              Int?    @default(0)
+  AprovacaoAutPedCompras             String? @default("N") @db.VarChar(1)
+  AvisaExistenciaPedItem             String? @default("S") @db.VarChar(1)
+  DescontaIPISTPrecoCusto            String? @db.VarChar(1)
+  FormularioRevisaoPedCompra         String? @db.VarChar(15)
+  AlteraDescricaoPedCompra           String? @default("N") @db.VarChar(1)
+  FormularioRevisaoReqCompra         String? @db.VarChar(15)
+  FormularioRevisaoOrcCompra         String? @db.VarChar(15)
+  UtilizaNumeroControle              String? @default("N") @db.VarChar(1)
+  GeraSequenciaItem                  String? @default("N") @db.VarChar(1)
+  LabelNumeroControle                String? @db.VarChar(10)
+  CalculaPartilhaRemetente           String? @default("N") @db.Char(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model parametros003 {
+  IntegraCR                          String? @db.VarChar(1)
+  IntegraCP                          String  @db.VarChar(1)
+  FaturamentoSNF                     String? @db.VarChar(1)
+  ProrrogaVencto                     String? @db.VarChar(1)
+  AtualizaEstoque                    String? @db.VarChar(1)
+  EstoqueNegativo                    String? @db.VarChar(1)
+  ComissaoCIPI                       String? @db.VarChar(1)
+  ComissaoVendedor                   String? @db.VarChar(1)
+  ComissaoProduto                    String? @db.VarChar(1)
+  ComissaoCliente                    String? @db.VarChar(1)
+  PerctoCofins                       Float?  @default(0) @db.Float
+  PerctoContrSocial                  Float?  @default(0) @db.Float
+  PerctoPIS                          Float?  @default(0) @db.Float
+  OptanteSimplesFederal              String? @db.VarChar(1)
+  AliquotaIcms                       Float?  @default(0) @db.Float
+  NatOperacaoST                      String? @db.VarChar(5)
+  TipoTabela                         String? @db.VarChar(1)
+  PrioridadeTabela                   String? @db.VarChar(1)
+  EmpresaDefaultPedido               Int?    @default(0) @db.SmallInt
+  EmpresaDefaultEstoque              Int?    @default(0) @db.SmallInt
+  IntegraFI                          String? @db.VarChar(1)
+  LancaPrevisaoFI                    String? @db.VarChar(1)
+  AtualizaEstoqueMaterial            String? @db.VarChar(1)
+  AtualizaCustoMaterial              String? @db.VarChar(1)
+  LanctoEntradaEstoque               Int?
+  LanctoEntradaProvEstoque           Int?
+  LanctoEstornoEntradaEstoque        Int?
+  VersaoCompra                       String? @db.VarChar(10)
+  VersaoFinanceiro                   String? @db.VarChar(10)
+  TipoDefault                        Int?    @default(1)
+  AtualizaEstoqueMaterialBaixaPedido String? @default("S") @db.VarChar(1)
+  UtilizaDestinoMaterial             String? @default("N") @db.VarChar(1)
+  SequenciaCodigoBarras              Int?    @default(0)
+  AprovacaoAutPedCompras             String? @default("N") @db.VarChar(1)
+  AvisaExistenciaPedItem             String? @default("S") @db.VarChar(1)
+  DescontaIPISTPrecoCusto            String? @db.VarChar(1)
+  FormularioRevisaoPedCompra         String? @db.VarChar(15)
+  AlteraDescricaoPedCompra           String? @default("N") @db.VarChar(1)
+  FormularioRevisaoReqCompra         String? @db.VarChar(15)
+  FormularioRevisaoOrcCompra         String? @db.VarChar(15)
+  UtilizaNumeroControle              String? @default("N") @db.VarChar(1)
+  GeraSequenciaItem                  String? @default("N") @db.VarChar(1)
+  LabelNumeroControle                String? @db.VarChar(10)
+  CalculaPartilhaRemetente           String? @default("N") @db.Char(1)
+
+  @@ignore
+}
+
+model parcelasdoctos002 {
+  NUMLANCTO         Int       @id @default(autoincrement())
+  NUMLANCTODOC      Int?      @default(0)
+  PARCELA           Int?      @default(0)
+  DATALANCTO        DateTime? @db.Date
+  DATAPGTO          DateTime? @db.Date
+  TIPOOPERACAO      Int?      @default(0)
+  VENCIMENTO        DateTime? @db.Date
+  DATAFLUXO         DateTime? @db.Date
+  VALOR             Float?    @default(0)
+  VALORDESCONTO     Float?    @default(0)
+  VALORABATIMENTO   Float?    @default(0)
+  VALORJUROS        Float?    @default(0)
+  VALORMULTA        Float?    @default(0)
+  VALORRETENCAO     Float?    @default(0)
+  VALORANTECIPACAO  Float?    @default(0)
+  VALORCARTORIO     Float?    @default(0)
+  DESPESASBANCARIAS Float?    @default(0)
+  CODFORMAPGTO      Int?      @default(0)
+  CODBANCO          Int?      @default(0)
+  NUMCHEQUE         String?   @db.VarChar(8)
+  ULTIMOPGTO        DateTime? @db.Date
+  VALORPGTOS        Float?    @default(0)
+  LANCTOFLUXO       Int?
+  Observacoesparc   String?   @db.VarChar(40)
+  Situacao          String?   @default("A") @db.VarChar(1)
+}
+
+model parcelasdoctos003 {
+  NUMLANCTO         Int       @id @default(autoincrement())
+  NUMLANCTODOC      Int?      @default(0)
+  PARCELA           Int?      @default(0)
+  DATALANCTO        DateTime? @db.Date
+  DATAPGTO          DateTime? @db.Date
+  TIPOOPERACAO      Int?      @default(0)
+  VENCIMENTO        DateTime? @db.Date
+  DATAFLUXO         DateTime? @db.Date
+  VALOR             Float?    @default(0)
+  VALORDESCONTO     Float?    @default(0)
+  VALORABATIMENTO   Float?    @default(0)
+  VALORJUROS        Float?    @default(0)
+  VALORMULTA        Float?    @default(0)
+  VALORRETENCAO     Float?    @default(0)
+  VALORANTECIPACAO  Float?    @default(0)
+  VALORCARTORIO     Float?    @default(0)
+  DESPESASBANCARIAS Float?    @default(0)
+  CODFORMAPGTO      Int?      @default(0)
+  CODBANCO          Int?      @default(0)
+  NUMCHEQUE         String?   @db.VarChar(8)
+  ULTIMOPGTO        DateTime? @db.Date
+  VALORPGTOS        Float?    @default(0)
+  LANCTOFLUXO       Int?
+  Observacoesparc   String?   @db.VarChar(40)
+  Situacao          String?   @default("A") @db.VarChar(1)
+}
+
+model parcelasdupl002 {
+  NUMLANCTO         Int       @id @default(autoincrement())
+  NUMLANCTODUPL     Int?      @default(0)
+  NOSSONUMERO       String?   @db.VarChar(15)
+  PARCELA           Int?      @default(0)
+  DATALANCTO        DateTime? @db.Date
+  DATARECTO         DateTime? @db.Date
+  TIPOOPERACAO      Int?      @default(0)
+  VENCIMENTO        DateTime? @db.Date
+  DATAFLUXO         DateTime? @db.Date
+  VALOR             Float?
+  VALORDESCONTO     Float?    @default(0)
+  VALORABATIMENTO   Float?    @default(0)
+  VALORJUROS        Float?    @default(0)
+  VALORMULTA        Float?    @default(0)
+  VALORCARTORIO     Float?    @default(0)
+  DESPESASBANCARIAS Float?    @default(0)
+  CODFORMARECTO     Int?      @default(0)
+  CODBANCO          Int?      @default(0)
+  CODTIPOCOBRANCA   Int?      @default(0)
+  ULTIMORECTO       DateTime? @db.Date
+  VALORRECTOS       Float?    @default(0)
+  OBSERVACOES       String?   @db.VarChar(40)
+  LANCTOFLUXO       Int?      @default(0)
+  ValorAntecipacao  Float?    @default(0)
+  Situacao          String?   @default("A") @db.VarChar(1)
+}
+
+model parcelasdupl003 {
+  NUMLANCTO         Int       @id @default(autoincrement())
+  NUMLANCTODUPL     Int?      @default(0)
+  NOSSONUMERO       String?   @db.VarChar(15)
+  PARCELA           Int?      @default(0)
+  DATALANCTO        DateTime? @db.Date
+  DATARECTO         DateTime? @db.Date
+  TIPOOPERACAO      Int?      @default(0)
+  VENCIMENTO        DateTime? @db.Date
+  DATAFLUXO         DateTime? @db.Date
+  VALOR             Float?
+  VALORDESCONTO     Float?    @default(0)
+  VALORABATIMENTO   Float?    @default(0)
+  VALORJUROS        Float?    @default(0)
+  VALORMULTA        Float?    @default(0)
+  VALORCARTORIO     Float?    @default(0)
+  DESPESASBANCARIAS Float?    @default(0)
+  CODFORMARECTO     Int?      @default(0)
+  CODBANCO          Int?      @default(0)
+  CODTIPOCOBRANCA   Int?      @default(0)
+  ULTIMORECTO       DateTime? @db.Date
+  VALORRECTOS       Float?    @default(0)
+  OBSERVACOES       String?   @db.VarChar(40)
+  LANCTOFLUXO       Int?      @default(0)
+  ValorAntecipacao  Float?    @default(0)
+  Situacao          String?   @default("A") @db.VarChar(1)
+}
+
+model parcelasnotafiscal002 {
+  NumLiberacao Int       @default(0)
+  Parcela      Int       @default(0)
+  DataVencto   DateTime? @default(dbgenerated("'0000-00-00'")) @db.Date
+  Valor        Float?    @default(0)
+
+  @@id([NumLiberacao, Parcela])
+}
+
+model parcelasnotafiscal003 {
+  NumLiberacao Int       @default(0)
+  Parcela      Int       @default(0)
+  DataVencto   DateTime? @default(dbgenerated("'0000-00-00'")) @db.Date
+  Valor        Float?    @default(0)
+
+  @@id([NumLiberacao, Parcela])
+}
+
+model pedidos002 {
+  Numero          Int       @id @default(autoincrement())
+  NumOrcamento    Int?      @default(0)
+  CodigoCliente   Int?      @default(0)
+  PedidoCliente   String?   @db.VarChar(20)
+  DataEntrada     DateTime? @default(dbgenerated("'0000-00-00'")) @db.Date
+  DataPrevEntrega DateTime? @default(dbgenerated("'0000-00-00'")) @db.Date
+  Comprador       String?   @db.VarChar(60)
+  Vendedor        Int?      @default(0)
+  NatOperacao     String?   @db.VarChar(5)
+  Transportadora  Int?      @default(0)
+  TipoFrete       Int?      @default(0)
+  PercDesconto1   Float?    @default(0)
+  PercDesconto2   Float?    @default(0)
+  PercDesconto3   Float?    @default(0)
+  PercDesconto4   Float?    @default(0)
+  Perc2Desconto1  Float?    @default(0)
+  Perc2Desconto2  Float?    @default(0)
+  Perc2Desconto3  Float?    @default(0)
+  Perc2Desconto4  Float?    @default(0)
+  ValorDesconto   Float?    @default(0)
+  Observacao      String?   @db.LongText
+  Dia1            Int?      @default(0)
+  Dia2            Int?      @default(0)
+  Dia3            Int?      @default(0)
+  Dia4            Int?      @default(0)
+  Dia5            Int?      @default(0)
+  Dia6            Int?      @default(0)
+  Dia7            Int?      @default(0)
+  Dia8            Int?      @default(0)
+  Dia9            Int?      @default(0)
+  PercRateio1     Float?    @default(0)
+  PercRateio2     Float?    @default(0)
+  TipoRateio      String?   @db.VarChar(1)
+}
+
+model pedidos003 {
+  Numero          Int       @id @unique(map: "Numero") @default(autoincrement())
+  NumOrcamento    Int?      @default(0)
+  CodigoCliente   Int?      @default(0)
+  PedidoCliente   String?   @db.VarChar(20)
+  DataEntrada     DateTime? @default(dbgenerated("'0000-00-00'")) @db.Date
+  DataPrevEntrega DateTime? @default(dbgenerated("'0000-00-00'")) @db.Date
+  Comprador       String?   @db.VarChar(60)
+  Vendedor        Int?      @default(0)
+  NatOperacao     String?   @db.VarChar(5)
+  Transportadora  Int?      @default(0)
+  TipoFrete       Int?      @default(0)
+  PercDesconto1   Float?    @default(0)
+  PercDesconto2   Float?    @default(0)
+  PercDesconto3   Float?    @default(0)
+  PercDesconto4   Float?    @default(0)
+  Perc2Desconto1  Float?    @default(0)
+  Perc2Desconto2  Float?    @default(0)
+  Perc2Desconto3  Float?    @default(0)
+  Perc2Desconto4  Float?    @default(0)
+  ValorDesconto   Float?    @default(0)
+  Observacao      String?   @db.LongText
+  Dia1            Int?      @default(0)
+  Dia2            Int?      @default(0)
+  Dia3            Int?      @default(0)
+  Dia4            Int?      @default(0)
+  Dia5            Int?      @default(0)
+  Dia6            Int?      @default(0)
+  Dia7            Int?      @default(0)
+  Dia8            Int?      @default(0)
+  Dia9            Int?      @default(0)
+  PercRateio1     Float?    @default(0)
+  PercRateio2     Float?    @default(0)
+  TipoRateio      String?   @db.VarChar(1)
+}
+
+model pedidoscompra002 {
+  Numero           Int       @id
+  Aprovado         String?   @db.VarChar(1)
+  DataAprovacao    DateTime? @db.Date
+  Fornecedor       Int?      @default(0)
+  PedidoFornecedor String?   @db.VarChar(10)
+  Contato          String?   @db.VarChar(60)
+  DataEntrada      DateTime? @db.Date
+  DataEntrega      DateTime? @db.Date
+  CondicaoPgto     String?   @db.VarChar(60)
+  CondPgto1        Float?    @default(0)
+  CondPgto2        Float?    @default(0)
+  CondPgto3        Float?    @default(0)
+  CondPgto4        Float?    @default(0)
+  CondPgto5        Float?    @default(0)
+  CondPgto6        Float?    @default(0)
+  CondPgto7        Float?
+  CondPgto8        Float?
+  CondPgto9        Float?
+  CondPgto10       Float?
+  CondPgto11       Float?
+  CondPgto12       Float?
+  Comprador        String?   @db.VarChar(60)
+  TipoFrete        Int?      @default(0)
+  ValorFrete       Float?    @default(0)
+  ValorSeguro      Float?    @default(0)
+  Observacao       String?   @db.LongText
+  Total            Float?
+  PercDesconto1    Float?
+  PercDesconto2    Float?
+  PercDesconto3    Float?
+  ValorDesconto    Float?    @default(0)
+  TipoPedido       Int?
+}
+
+model pedidoscompra003 {
+  Numero           Int       @id
+  Aprovado         String?   @db.VarChar(1)
+  DataAprovacao    DateTime? @db.Date
+  Fornecedor       Int?      @default(0)
+  PedidoFornecedor String?   @db.VarChar(10)
+  Contato          String?   @db.VarChar(60)
+  DataEntrada      DateTime? @db.Date
+  DataEntrega      DateTime? @db.Date
+  CondicaoPgto     String?   @db.VarChar(60)
+  CondPgto1        Float?    @default(0)
+  CondPgto2        Float?    @default(0)
+  CondPgto3        Float?    @default(0)
+  CondPgto4        Float?    @default(0)
+  CondPgto5        Float?    @default(0)
+  CondPgto6        Float?    @default(0)
+  CondPgto7        Float?
+  CondPgto8        Float?
+  CondPgto9        Float?
+  CondPgto10       Float?
+  CondPgto11       Float?
+  CondPgto12       Float?
+  Comprador        String?   @db.VarChar(60)
+  TipoFrete        Int?      @default(0)
+  ValorFrete       Float?    @default(0)
+  ValorSeguro      Float?    @default(0)
+  Observacao       String?   @db.LongText
+  Total            Float?
+  PercDesconto1    Float?
+  PercDesconto2    Float?
+  PercDesconto3    Float?
+  ValorDesconto    Float?    @default(0)
+  TipoPedido       Int?
+}
+
+model precocliente {
+  CodigoCliente     Int
+  CodigoProduto     String  @db.VarChar(20)
+  Preco             Float?  @default(0)
+  ReferenciaCliente String? @db.VarChar(20)
+
+  @@id([CodigoCliente, CodigoProduto])
+}
+
+model previsaopgtos002 {
+  Referencia String @db.VarChar(6)
+  CodCCusto  String @db.VarChar(10)
+  Valor      Float?
+
+  @@id([Referencia, CodCCusto])
+}
+
+model previsaopgtos003 {
+  Referencia String @db.VarChar(6)
+  CodCCusto  String @db.VarChar(10)
+  Valor      Float?
+
+  @@id([Referencia, CodCCusto])
+}
+
+model produtofornecedor {
+  CodProduto        String    @db.VarChar(20)
+  CodFornecedor     Int
+  CodigoInterno     String?   @db.VarChar(15)
+  PrecoAtual        Float?    @default(0)
+  UltimaAtualizacao DateTime? @db.Date
+
+  @@id([CodProduto, CodFornecedor])
+}
+
+model produtos {
+  Codigo         String  @id @db.VarChar(20)
+  CodigoInterno  String? @db.VarChar(20)
+  CodigoBarra    String? @db.VarChar(14)
+  Descricao      String? @db.VarChar(120)
+  DescricaoAtual String? @db.VarChar(120)
+  Aplicacao      String? @db.VarChar(100)
+  Motor          String? @db.VarChar(100)
+  Grupo          Int?    @default(0)
+  GrupoAtual     Int?
+  ClassFiscal    String? @db.VarChar(8)
+  Unidade        String? @db.VarChar(3)
+  SitTributaria  String? @db.VarChar(4)
+  PrecoAnterior  Float?
+  PrecoAtual     Float?  @default(0)
+  Peso           Float?  @default(0)
+  PesoEmbalagem  Float?  @default(0)
+  Obs1           String? @db.VarChar(60)
+  Obs2           String? @db.VarChar(60)
+  Status         String? @default("A") @db.VarChar(1)
+  Foto           String? @db.VarChar(255)
+  BaseIcmsstAnt  Float?  @default(0)
+  ValorIcmsstAnt Float?  @default(0)
+  TipoObs        Int?    @default(0)
+  Fabricado      String? @db.VarChar(1)
+  Comprado       String? @db.VarChar(1)
+  ContemItens    Int?
+  ContemPecas    Int?
+}
+
+model qualidadecompras002 {
+  NumPedido      Int       @default(0)
+  CodProduto     String    @db.VarChar(20)
+  Item           Int       @default(0)
+  NumDocumento   String    @db.VarChar(20)
+  CodFornecedor  Int       @default(0)
+  Qtde           Float?    @default(0)
+  NumCertificado String?   @db.VarChar(20)
+  Responsavel    String?   @db.VarChar(100)
+  Data           DateTime? @db.Date
+  Resultado      String?   @default("A") @db.VarChar(2)
+
+  @@id([NumPedido, CodProduto, Item, NumDocumento, CodFornecedor])
+}
+
+model qualidadecompras003 {
+  NumPedido      Int       @default(0)
+  CodProduto     String    @db.VarChar(20)
+  Item           Int       @default(0)
+  NumDocumento   String    @db.VarChar(20)
+  CodFornecedor  Int       @default(0)
+  Qtde           Float?    @default(0)
+  NumCertificado String?   @db.VarChar(20)
+  Responsavel    String?   @db.VarChar(100)
+  Data           DateTime? @db.Date
+  Resultado      String?   @default("A") @db.VarChar(2)
+
+  @@id([NumPedido, CodProduto, Item, NumDocumento, CodFornecedor])
+}
+
+model rateio002 {
+  NUMLANCTO Int    @default(0)
+  CODCCUSTO String @db.VarChar(10)
+  VALOR     Float? @default(0)
+
+  @@id([NUMLANCTO, CODCCUSTO])
+}
+
+model rateio003 {
+  NUMLANCTO Int    @default(0)
+  CODCCUSTO String @db.VarChar(10)
+  VALOR     Float? @default(0)
+
+  @@id([NUMLANCTO, CODCCUSTO])
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model recibo {
+  NumRecibo   Int?    @default(0)
+  Tipo        String? @db.VarChar(1)
+  Empresa     String? @db.VarChar(80)
+  CNPJ        String? @db.VarChar(20)
+  RazaoSocial String? @db.VarChar(60)
+  Referente1  String? @db.VarChar(80)
+  Referente2  String? @db.VarChar(80)
+  Valor       Float?  @default(0) @db.Float
+  Data        String? @db.VarChar(80)
+  Grupo       String? @db.VarChar(80)
+  Imprime     String? @db.Char(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model remessacnab002 {
+  Banco          Int?      @default(0)
+  CodigoCarteira String?   @db.VarChar(3)
+  NumDupl        String?   @db.VarChar(15)
+  Parcela        Int?      @default(0)
+  NumeroBancario String?   @db.VarChar(10)
+  NumLancto      Int?      @default(0)
+  TipoCobranca   Int?      @default(0)
+  Emissao        DateTime? @db.Date
+  RazaoSocial    String?   @db.VarChar(60)
+  Endereco       String?   @db.VarChar(150)
+  Vencimento     DateTime? @db.Date
+  Valor          Float?    @default(0) @db.Float
+  Juros          Float?    @default(0) @db.Float
+  Multa          Float?    @default(0) @db.Float
+  Abatimento     Float?    @default(0) @db.Float
+  NroRemessa     Int?      @default(0)
+  NomeArquivo    String?   @db.VarChar(150)
+  DataEnvio      DateTime? @db.Date
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model remessacnab003 {
+  Banco          Int?      @default(0)
+  CodigoCarteira String?   @db.VarChar(3)
+  NumDupl        String?   @db.VarChar(15)
+  Parcela        Int?      @default(0)
+  NumeroBancario String?   @db.VarChar(10)
+  NumLancto      Int?      @default(0)
+  TipoCobranca   Int?      @default(0)
+  Emissao        DateTime? @db.Date
+  RazaoSocial    String?   @db.VarChar(60)
+  Endereco       String?   @db.VarChar(150)
+  Vencimento     DateTime? @db.Date
+  Valor          Float?    @default(0) @db.Float
+  Juros          Float?    @default(0) @db.Float
+  Multa          Float?    @default(0) @db.Float
+  Abatimento     Float?    @default(0) @db.Float
+  NroRemessa     Int?      @default(0)
+  NomeArquivo    String?   @db.VarChar(150)
+  DataEnvio      DateTime? @db.Date
+
+  @@ignore
+}
+
+model requisicaocompra002 {
+  Numero         Int       @id
+  CodVendedor    Int?
+  Data           DateTime? @db.Date
+  Hora           String?   @db.VarChar(6)
+  CodProduto     String?   @db.VarChar(20)
+  Unidade        String?   @db.VarChar(3)
+  Qtde           Float?
+  QtdeAtendida   Float?
+  Solicitante    String?   @db.VarChar(30)
+  DataUtilizacao DateTime? @db.Date
+  Observacao     String?   @db.LongText
+  NumPedido      Int?
+  DestinoProduto Int?
+}
+
+model requisicaocompra003 {
+  Numero         Int       @id
+  CodVendedor    Int?
+  Data           DateTime? @db.Date
+  Hora           String?   @db.VarChar(6)
+  CodProduto     String?   @db.VarChar(20)
+  Unidade        String?   @db.VarChar(3)
+  Qtde           Float?
+  QtdeAtendida   Float?
+  Solicitante    String?   @db.VarChar(30)
+  DataUtilizacao DateTime? @db.Date
+  Observacao     String?   @db.LongText
+  NumPedido      Int?
+  DestinoProduto Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model retencaoimpostos {
+  DiaPgtoIR                 String? @db.VarChar(2)
+  CodFornecedorIR           Int?    @default(0)
+  CodCentroCustoIR          String? @db.VarChar(10)
+  PercIR                    Float?  @default(0) @db.Float
+  DiaPgtoINSS               String? @db.VarChar(2)
+  CodFornecedorINSS         Int?    @default(0)
+  CodCentroCustoINSS        String? @db.VarChar(10)
+  PercINSS                  Float?  @default(0) @db.Float
+  DiaPgtoPis1               String? @db.VarChar(2)
+  DiaPgtoPis2               String? @db.VarChar(2)
+  CodFornecedorPis          Int?    @default(0)
+  CodCentroCustoPis         String? @db.VarChar(10)
+  PercPis                   Float?  @default(0) @db.Float
+  DiaPgtoCofins1            String? @db.VarChar(2)
+  DiaPgtoCofins2            String? @db.VarChar(2)
+  CodFornecedorCofins       Int?    @default(0)
+  CodCentroCustoCofins      String? @db.VarChar(10)
+  PercCofins                Float?  @default(0) @db.Float
+  CodFornecedorContrSocial  Int?    @default(0)
+  CodCentroCustoContrSocial String? @db.VarChar(10)
+  PercContrSocial           Float?  @default(0) @db.Float
+  DiaPgtoContrSocial2       String? @db.VarChar(2)
+  DiaPgtoContrSocial1       String? @db.VarChar(2)
+  CodFornecedorPCC          Int?
+  DiaPgtoPCC1               String? @db.VarChar(2)
+  DiaPgtoPCC2               String? @db.VarChar(2)
+  CodCentroCustoPCC         String? @db.VarChar(10)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model retornocnab002 {
+  Banco            Int?      @default(0)
+  CodigoCarteira   String?   @db.VarChar(3)
+  NumDupl          String?   @db.VarChar(15)
+  CodOcorrencia    String?   @db.VarChar(2)
+  Parcela          Int?      @default(0)
+  NumeroBancario   String?   @db.VarChar(10)
+  NumLancto        Int?      @default(0)
+  Emissao          DateTime? @db.Date
+  RazaoSocial      String?   @db.VarChar(60)
+  Vencimento       DateTime? @db.Date
+  ValorPago        Float?    @default(0) @db.Float
+  Juros            Float?    @default(0) @db.Float
+  Multa            Float?    @default(0) @db.Float
+  Abatimento       Float?    @default(0) @db.Float
+  OutrosCreditos   Float?    @default(0) @db.Float
+  Desconto         Float?    @default(0) @db.Float
+  DespesasCartorio Float?    @default(0) @db.Float
+  NomeArquivo      String?   @db.VarChar(150)
+  DataRecebimento  DateTime? @db.Date
+  Processado       String?   @db.VarChar(3)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model retornocnab003 {
+  Banco            Int?      @default(0)
+  CodigoCarteira   String?   @db.VarChar(3)
+  NumDupl          String?   @db.VarChar(15)
+  CodOcorrencia    String?   @db.VarChar(2)
+  Parcela          Int?      @default(0)
+  NumeroBancario   String?   @db.VarChar(10)
+  NumLancto        Int?      @default(0)
+  Emissao          DateTime? @db.Date
+  RazaoSocial      String?   @db.VarChar(60)
+  Vencimento       DateTime? @db.Date
+  ValorPago        Float?    @default(0) @db.Float
+  Juros            Float?    @default(0) @db.Float
+  Multa            Float?    @default(0) @db.Float
+  Abatimento       Float?    @default(0) @db.Float
+  OutrosCreditos   Float?    @default(0) @db.Float
+  Desconto         Float?    @default(0) @db.Float
+  DespesasCartorio Float?    @default(0) @db.Float
+  NomeArquivo      String?   @db.VarChar(150)
+  DataRecebimento  DateTime? @db.Date
+  Processado       String?   @db.VarChar(3)
+
+  @@ignore
+}
+
+model statusclientes {
+  Codigo     Int     @id @default(autoincrement())
+  Descricao  String? @db.VarChar(60)
+  TipoStatus String? @db.VarChar(1)
+}
+
+model talao002 {
+  CodBanco Int     @default(0)
+  NumTalao Int     @default(0)
+  Situacao String? @db.VarChar(1)
+
+  @@id([CodBanco, NumTalao])
+}
+
+model talao003 {
+  CodBanco Int     @default(0)
+  NumTalao Int     @default(0)
+  Situacao String? @db.VarChar(1)
+
+  @@id([CodBanco, NumTalao])
+}
+
+model talaocheques002 {
+  CodBanco  Int     @default(0)
+  NumTalao  Int     @default(0)
+  NumCheque Int     @default(0)
+  Utilizado String? @db.VarChar(1)
+
+  @@id([CodBanco, NumTalao, NumCheque])
+}
+
+model talaocheques003 {
+  CodBanco  Int     @default(0)
+  NumTalao  Int     @default(0)
+  NumCheque Int     @default(0)
+  Utilizado String? @db.VarChar(1)
+
+  @@id([CodBanco, NumTalao, NumCheque])
+}
+
+model tipoantecipacao {
+  Codigo    Int    @id @default(0)
+  Descricao String @db.VarChar(60)
+}
+
+model tipocobranca {
+  Codigo         Int     @id @default(0)
+  Descricao      String? @db.VarChar(14)
+  ConsideraFluxo String? @default("N") @db.Char(1)
+  NumDias        Int?    @default(0)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model tipodocumento {
+  Codigo    String? @db.VarChar(4)
+  Descricao String? @db.VarChar(60)
+
+  @@ignore
+}
+
+model tipoitens {
+  Codigo            String  @id @db.VarChar(3)
+  Descricao         String? @db.VarChar(60)
+  RegistroBloqueado String? @default("N") @db.Char(1)
+}
+
+model tipolanctoestoque {
+  Codigo    Int     @id
+  Descricao String? @db.VarChar(30)
+  Tipo      String? @db.VarChar(1)
+}
+
+model tipoobservacao {
+  Codigo     Int     @id @default(autoincrement())
+  Titulo     String? @default("") @db.VarChar(100)
+  Observacao String? @db.LongText
+}
+
+model transportadora {
+  Codigo         Int     @id @default(autoincrement())
+  NomeFantasia   String? @db.VarChar(40)
+  Nome           String? @db.VarChar(40)
+  Endereco       String? @db.VarChar(40)
+  Numero         String? @db.VarChar(5)
+  CEP            String? @db.VarChar(9)
+  Bairro         String? @db.VarChar(20)
+  Municipio      String? @db.VarChar(25)
+  UF             String? @db.VarChar(2)
+  DDD            String? @db.VarChar(2)
+  Telefone       String? @db.VarChar(17)
+  Telefone2      String? @db.VarChar(15)
+  Complemento    String? @db.VarChar(30)
+  Contato        String? @db.VarChar(30)
+  Fax            String? @db.VarChar(9)
+  ViaTransporte  String? @db.VarChar(15)
+  PlacaVeiculo   String? @db.VarChar(8)
+  UFPlacaVeiculo String? @db.VarChar(2)
+  NomeMotorista  String? @db.VarChar(20)
+  CNPJ           String? @db.VarChar(14)
+  InscrEstadual  String? @db.VarChar(20)
+  Email          String? @db.VarChar(60)
+  HomePage       String? @db.VarChar(60)
+  TipoFrete      Int?
+  Ativo          String? @db.VarChar(1)
+  RecebeEmailNFe String? @db.VarChar(1)
+}
+
+model unidfederacao {
+  Codigo           String  @id @default("") @db.VarChar(2)
+  Descricao        String? @db.VarChar(20)
+  AliqIcms         Float?  @default(0)
+  ICMSInterno      Float?  @default(0)
+  AliquotaFCP      Float?  @default(0)
+  TipoCalcPartilha Int?    @default(2)
+  CalculaFCP       String? @default("N") @db.VarChar(1)
+}
+
+model usuarios {
+  Usuario       String  @id @db.VarChar(25)
+  Senha         String? @db.VarChar(25)
+  Nome          String? @db.VarChar(60)
+  Administrador String? @default("N") @db.Char(1)
+  Departamento  String? @db.VarChar(3)
+  EmpresaPadrao Int?    @default(2) @db.UnsignedSmallInt
+}
+
+model vendedor {
+  CODIGO       Int     @id @default(0)
+  NOME         String? @db.VarChar(60)
+  ENDERECO     String? @db.VarChar(60)
+  Numero       String? @db.VarChar(5)
+  CEP          String? @db.VarChar(8)
+  Bairro       String? @db.VarChar(40)
+  Complemento  String? @db.VarChar(40)
+  MUNICIPIO    String? @db.VarChar(40)
+  UF           String? @db.VarChar(2)
+  DDD          String? @db.VarChar(2)
+  FONE         String? @db.VarChar(17)
+  CONTATO      String? @db.VarChar(40)
+  FAX          String? @db.VarChar(9)
+  CNPJ         String? @db.VarChar(14)
+  INSCESTADUAL String? @db.VarChar(20)
+  COMISSAO     Float?  @default(0)
+  HomePage     String? @db.VarChar(80)
+  Email        String? @db.VarChar(80)
+  Status       String? @db.VarChar(1)
+  Atuacao      String? @db.VarChar(50)
+  Observacao   String? @db.LongText
+}
