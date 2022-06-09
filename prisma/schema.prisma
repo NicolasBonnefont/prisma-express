@@ -7,20 +7,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Usuario {
-  id      Int    @id @default(autoincrement())
-  usuario String @unique
-  nome    String
-  email   String
-  senha   String
+model Usuarios {
+  id         Int      @id @default(autoincrement())
+  usuario    String   @unique
+  nome       String
+  email      String
+  senha      String
 
   unidades Unidades[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("usuarios")
 }
 
 model Unidades {
-  id   Int    @id @default(autoincrement())
-  nome String
+  id         Int      @id @default(autoincrement())
+  nome       String
 
-  Usuario    Usuario? @relation(fields: [usuario_id], references: [id])
+  usuarios    Usuarios? @relation(fields: [usuario_id], references: [id])
   usuario_id Int?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  
+  @@map("unidades")
 }

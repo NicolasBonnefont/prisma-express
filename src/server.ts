@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 
 const server = express()
 
+server.use(express.json())
+
 server.use(bodyParser.json())
 
 server.get('/', (req, res) => {

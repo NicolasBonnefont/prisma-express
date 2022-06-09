@@ -15,9 +15,15 @@ export class Usuarios {
           email: true,
           nome: true
         },
+        include:{
+          Unidades:true,
+        },
         orderBy: {
           id: 'asc'
-        }
+        },
+
+
+
       })
 
       return res.json(usuarios)
