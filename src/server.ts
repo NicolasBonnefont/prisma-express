@@ -4,10 +4,7 @@ import bodyParser from 'body-parser';
 
 const server = express()
 
-
 server.use(bodyParser.json())
-
-server.use(routes)
 
 server.get('/', (req, res) => {
   res.status(200).json({
@@ -15,6 +12,8 @@ server.get('/', (req, res) => {
   })
 })
 
-server.listen(3000, () => {
+server.use(routes)
+
+server.listen(process.env.PORT, () => {
   console.log('server is running at port 3333 😎')
 })
