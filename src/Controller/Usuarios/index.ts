@@ -1,6 +1,6 @@
-import { PrismaClient, Prisma } from '@prisma/client'
-import { Request, Response } from 'express'
+import { Prisma, PrismaClient } from '@prisma/client'
 import bcrypt from 'bcrypt'
+import { Request, Response } from 'express'
 
 const prisma = new PrismaClient()
 
@@ -8,7 +8,17 @@ export class Usuarios {
   public static async listarUsuario(req: Request, res: Response) {
     try {
 
-      const usuarios = await prisma.usuario.findMany()
+      const usuarios = await prisma.usuario.findMany({
+        select: {
+          id: true,
+          usuario: true,
+          email: true,
+          nome: true
+        },
+        orderBy: {
+          id: 'asc'
+        }
+      })
 
       return res.json(usuarios)
 
@@ -29,6 +39,17 @@ export class Usuarios {
           Mensagem: 'Informar todos os dados !'
         })
       }
+
+      const pesquisaUsuario = await prisma.usuario.findFirst({
+        where: {
+          usuario: dados.usuario
+        }
+      })
+
+      if (pesquisaUsuario) {
+        return res.status(400).json({ Mensagem: 'Usuário já existe !' })
+      }
+
       // criptografa a senha do usuário
       bcrypt.hash(dados.senha, 5, async (error, hash) => {
 
