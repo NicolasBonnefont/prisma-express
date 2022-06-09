@@ -4,8 +4,11 @@
 
  Primeiro: `npm install`
 
- Em seguida: `npx prisma migrate dev` e `npx prisma generate`
+ 1º : `npx prisma migrate dev` Vai gerar as tabelas no banco de dados
+ 2º :`npx prisma generate` Irá criar os types conforme o modelo de dados
 
  Por fim: `npm run dev`
+
+ 🚀🚀
  
  
