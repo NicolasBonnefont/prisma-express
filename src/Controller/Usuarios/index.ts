@@ -17,10 +17,6 @@ export class Usuarios {
       return res.status(500).json(error)
     }
 
-    finally {
-      await prisma.$disconnect()
-    }
-
   }
 
   public static async criarUsuario(req: Request, res: Response) {
@@ -48,7 +44,7 @@ export class Usuarios {
               }
             })
 
-            return res.status(201)
+            return res.status(201).json({})
 
           } catch (error) {
 
@@ -70,9 +66,7 @@ export class Usuarios {
     } catch (error) {
       return res.status(500).send(error)
     }
-    finally {
-      prisma.$disconnect()
-    }
+
   }
 }
 

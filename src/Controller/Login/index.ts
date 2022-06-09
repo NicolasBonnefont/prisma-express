@@ -43,9 +43,5 @@ export default class {
       return res.status(500).json(error)
     }
 
-    finally {
-      prisma.$disconnect()
-    }
-
   }
 }
