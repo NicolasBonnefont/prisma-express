@@ -7,7 +7,7 @@ async function seed() {
   bcrypt.hash('123456', 5, async (error, hash) => {
 
     if (hash) {
-      await prisma.usuario.create({
+      await prisma.usuarios.create({
         data: {
           email: "nicolas@morinfo.com.br",
           nome: "Nicolas Bonnefont",
