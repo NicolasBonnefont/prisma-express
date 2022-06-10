@@ -1,7 +1,6 @@
-# fly.toml file generated for express-prisma on 2022-06-09T11:37:53-03:00
+# fly.toml file generated for aged-thunder-6635 on 2022-06-09T22:17:09-03:00
 
-app = "express-prisma"
-
+app = "aged-thunder-6635"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
@@ -11,7 +10,6 @@ processes = []
 
 [env]
   PORT = "8080"
-  NODE_ENV = "production"
 
 [experimental]
   allowed_public_ports = []
@@ -23,7 +21,6 @@ processes = []
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
-
   [services.concurrency]
     hard_limit = 25
     soft_limit = 20
