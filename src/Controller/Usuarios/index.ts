@@ -8,21 +8,16 @@ export class Usuarios {
   public static async listarUsuario(req: Request, res: Response) {
     try {
 
-      const usuarios = await prisma.usuario.findMany({
+      const usuarios = await prisma.usuarios.findMany({
         select: {
           id: true,
           usuario: true,
           email: true,
           nome: true
         },
-        include:{
-          Unidades:true,
-        },
         orderBy: {
           id: 'asc'
         },
-
-
 
       })
 
@@ -46,7 +41,7 @@ export class Usuarios {
         })
       }
 
-      const pesquisaUsuario = await prisma.usuario.findFirst({
+      const pesquisaUsuario = await prisma.usuarios.findFirst({
         where: {
           usuario: dados.usuario
         }
@@ -62,7 +57,7 @@ export class Usuarios {
         if (hash) {
           try {
 
-            await prisma.usuario.create({
+            await prisma.usuarios.create({
               data: {
                 email: dados.email,
                 nome: dados.nome,

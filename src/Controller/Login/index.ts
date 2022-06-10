@@ -12,7 +12,7 @@ export default class {
 
       const { usuario, senha } = req.body
 
-      const pesquisaUsuario = await prisma.usuario.findFirst({
+      const pesquisaUsuario = await prisma.usuarios.findFirst({
         where: {
           usuario
         }
