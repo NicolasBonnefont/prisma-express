@@ -12,7 +12,7 @@
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc --build",
     "clean": "tsc --build --clean",
-    "start": "node build/server.js"
+    "start": "node build/src/server.js"
   },
   "author": "nicolasbonnefont",
   "license": "ISC",
